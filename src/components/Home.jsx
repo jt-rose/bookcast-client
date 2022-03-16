@@ -1,22 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import Edit from './Edit'
 import axios from 'axios'
-import {
-  Redirect,
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-  Switch,
-  useParams
-} from "react-router-dom" ;
-import Add from './components/Add'
-import Edit from './components/Edit'
+import Add from './Add'
+import "../styles/Datas.css"
 
-import Home from './components/Home'
-import NavBar from './components/navbar'
+const Home = () => {
 
-
-const App = () => {
     let [castings, setCastings] = useState([])
 
     const getCastings = () => {
@@ -55,34 +44,14 @@ const App = () => {
        })
     }
 
-
     useEffect(() => {
-     getCastings()
-    }, [])
+        getCastings()
+       }, [])
 
     return (
         <>
-
-        <NavBar />
-        <h1>BookCast</h1>
-        <div className = "nav">
-        <Link to="/home">Home</Link>
-        <Link to="/add">Add</Link>
-        <Link to="/edit">Edit</Link>
-
-        </div>
-
-         <Routes>
-         <Route path="/home" element={<Home />}/>
-         <Route path="/add" element={<Add />}/>
-         <Route path="/edit" element={<Edit />}/>
-         </Routes>
-        </>
-    )
-
-      <Add handleCreate={handleCreate} />
-     <h1>Book Cast</h1>
-     <div className="castings">
+        <Add handleUpdate={handleCreate} />
+    <div className="castings">
       {castings.map((casting, index) => {
         return (
           <div className="casting" key={casting.id + index}>
@@ -97,7 +66,12 @@ const App = () => {
         )
       })}
      </div>
-     </>
- )
 
-export default App;
+
+        
+        </>
+  
+    )
+}
+
+export default Home;

@@ -16,6 +16,7 @@ const Add = (props) => {
 
   return (
     <>
+    <div className = "addForm">
     <form onSubmit={handleSubmit}>
      
      <label htmlFor="source_name">Film: </label>
@@ -28,8 +29,11 @@ const Add = (props) => {
      <br />
      <label htmlFor="description">Description: </label>
      <input type="text" name="description" value={casting.description} onChange={handleChange} />
+     <br />
+     <br />
      <input type="submit" />
     </form>
+    </div>
     </>
   )
 }
