@@ -1,36 +1,51 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
+import {
+  Redirect,
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  Switch,
+  useParams
+} from "react-router-dom" ;
+import Add from './components/Add'
+import Edit from './components/Edit'
+import Home from './components/Home'
 
 const App = () => {
-    let [users, setUsers] = useState([])
+    let [books, setBooks] = useState([])
 
-    const getUsers = () => {
+    const getBooks = () => {
      axios
-       .get('https://bookcast-server.herokuapp.com/api/users')
+       .get('https://openlibrary.org/search.json?q=subjects')
        .then(
-         (response) => setUsers(response.data),
+         (response) => setBooks(response.data.docs),
          (err) => console.error(err)
        )
        .catch((error) => console.error(error))
     }
 
+
     useEffect(() => {
-     getUsers()
+     getBooks()
     }, [])
 
     return (
         <>
         <h1>BookCast</h1>
-        <div className="users">
-         {users.map((user) => {
-           return (
-             <div className="person" key={user.id}>
-               <h4>Name: {user.username}</h4>
-             </div>
-           )
-         })}
+        <div className = "nav">
+        <Link to="/home">Home</Link>
+        <Link to="/add">Add</Link>
+        <Link to="/edit">Edit</Link>
+
         </div>
+
+         <Routes>
+         <Route path="/home" element={<Home />}/>
+         <Route path="/add" element={<Add />}/>
+         <Route path="/edit" element={<Edit />}/>
+         </Routes>
         </>
     )
 }
