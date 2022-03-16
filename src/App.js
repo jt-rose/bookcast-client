@@ -12,6 +12,7 @@ import {
 import Add from './components/Add'
 import Edit from './components/Edit'
 import Home from './components/Home'
+import NavBar from './components/navbar'
 
 const App = () => {
     let [books, setBooks] = useState([])
@@ -33,6 +34,7 @@ const App = () => {
 
     return (
         <>
+        <NavBar />
         <h1>BookCast</h1>
         <div className = "nav">
         <Link to="/home">Home</Link>
