@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const serverURL = "https://bookcast-server.herokuapp.com";
 //   process.env.NODE_ENV === "production"
@@ -14,6 +15,8 @@ const Auth = (props) => {
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
+  let navigate = useNavigate();
+
   const register = (event) => {
     event.preventDefault();
     axios
@@ -27,6 +30,7 @@ const Auth = (props) => {
         props.tokenData.setToken(response.data.token);
         props.userData.setUser(response.data.user);
         props.errorData.setError(false);
+        navigate("/");
       })
       .catch((err) => props.errorData.setError(err));
   };
@@ -41,6 +45,7 @@ const Auth = (props) => {
         props.tokenData.setToken(response.data.token);
         props.userData.setUser(response.data.user);
         props.errorData.setError(false);
+        navigate("/");
       })
       .catch((err) => props.errorData.setError(err));
   };

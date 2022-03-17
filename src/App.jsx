@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Discover from "./components/Discover";
 import Casting from "./components/Casting";
 import Home from "./components/Home";
@@ -12,6 +12,8 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState("");
   const [error, setError] = useState(false);
+
+  let navigate = useNavigate();
 
   const logout = () => {
     axios
@@ -26,6 +28,7 @@ const App = () => {
         setToken("");
         setUser(null);
         setError(false);
+        navigate("/");
       })
       .catch((err) => setError(err));
   };
