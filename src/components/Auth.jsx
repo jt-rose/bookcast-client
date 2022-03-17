@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-export const serverURL = "https://bookcast.herokuapp.com";
+export const serverURL = "https://bookcast-server.herokuapp.com";
 //   process.env.NODE_ENV === "production"
 //     ? "https://bookcast-server.herokuapp.com"
 //     : "http://localhost:8000";
