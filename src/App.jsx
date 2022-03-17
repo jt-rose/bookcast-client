@@ -23,7 +23,6 @@ const App = () => {
         <Link className = "link" to="/login">Login</Link>
         </div>
     
-
   
         <Routes>
         <Route path="/" element={<Home />}/>
@@ -31,7 +30,6 @@ const App = () => {
         <Route path="/recent-list" element={<RecentList />}/>
         <Route path="/profile" element={<Profile />}/>
         <Route path="/login" element={<Login />}/>
-
         </Routes>
         
         </>

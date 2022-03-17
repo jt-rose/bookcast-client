@@ -50,13 +50,12 @@ const Home = () => {
 
     return (
         <>
-        <Add handleUpdate={handleCreate} />
+        <Add handleCreate={handleCreate} />
     <div className="castings">
       {castings.map((casting, index) => {
         return (
           <div className="casting" key={casting.id + index}>
               <h4>Date: {casting.created}</h4>
-              <h4>Name: {casting.creator}</h4>
             <h4>{casting.source_name}</h4>
             <img src = {casting.source_image_url}></img>
             <h5>Description: {casting.description}</h5>
