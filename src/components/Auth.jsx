@@ -6,8 +6,7 @@ export const serverURL = "https://bookcast-server.herokuapp.com";
 //     ? "https://bookcast-server.herokuapp.com"
 //     : "http://localhost:8000";
 
-const Auth = () => {
-  const [token, setToken] = useState("");
+const Auth = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -25,8 +24,11 @@ const Auth = () => {
       })
       .then((response) => {
         console.log(response);
-        setToken(response.data.token);
-      });
+        props.tokenData.setToken(response.data.token);
+        props.userData.setUser(response.data.user);
+        props.errorData.setError(false);
+      })
+      .catch((err) => props.errorData.setError(err));
   };
 
   const login = () => {
@@ -35,7 +37,12 @@ const Auth = () => {
         username: loginUsername,
         password: loginPassword,
       })
-      .then((response) => setToken(response.data.token));
+      .then((response) => {
+        props.tokenData.setToken(response.data.token);
+        props.userData.setUser(response.data.user);
+        props.errorData.setError(false);
+      })
+      .catch((err) => props.errorData.setError(err));
   };
 
   const getUser = () => {
@@ -43,10 +50,15 @@ const Auth = () => {
       .get(serverURL + "/api/auth/user", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token " + token,
+          Authorization: "Token " + props.tokenData.token,
         },
       })
-      .then((response) => console.log(response));
+      .then((response) => {
+        console.log(response);
+        props.userData.setUser(response.data);
+        props.errorData.setError(false);
+      })
+      .catch((err) => props.errorData.setError(err));
   };
 
   const logout = () => {
@@ -54,19 +66,25 @@ const Auth = () => {
       .post(serverURL + "/api/auth/logout", null, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token " + token,
+          Authorization: "Token " + props.tokenData.token,
         },
       })
       .then((response) => {
         console.log(response);
-        //setToken('')
-      });
+        props.tokenData.setToken("");
+        props.userData.setUser(null);
+        props.errorData.setError(false);
+      })
+      .catch((err) => props.errorData.setError(err));
   };
 
   return (
     <div>
+      {props.errorData.error && (
+        <p style={{ color: "red" }}>Error: {props.errorData.error.message}</p>
+      )}
       <h1>Auth Test</h1>
-      <p>Token: {token ? token : "NA"}</p>
+      <p>Token: {props.tokenData.token ? props.tokenData.token : "NA"}</p>
       <label htmlFor="username">Username</label>
       <input
         type="text"
