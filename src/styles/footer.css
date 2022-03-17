@@ -1,0 +1,25 @@
+.footer {
+  background-color: #9395D3;
+  height: 90px;
+  bottom: 0;
+  margin-top: 10em;
+  font-family: "Source Code Pro", monospace;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #000807;
+  text-shadow: 1px 2px 1px #FBF9FF;
+  font-family: "Source Code Pro", monospace;
+}
+
+.footer a:hover {
+  color: #FBF9FF;
+  text-shadow: 1px 2px 1px #000807;
+}
+
+.footer p {
+  text-align: center;
+  padding: 20px;
+}
+/*# sourceMappingURL=footer.css.map */

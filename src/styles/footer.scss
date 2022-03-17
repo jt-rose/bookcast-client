@@ -1,0 +1,17 @@
+@import "../variables/variables.scss";
+ .footer {
+     background-color: $color3;
+     height: 90px;
+     bottom: 0;
+     margin-top: 10em;
+     font-family: $font2;
+    
+    a {
+        @include linkStyle ($color1, $color5)
+    }
+    p {
+        text-align: center;
+        padding: 20px;
+    }
+ }
+ 

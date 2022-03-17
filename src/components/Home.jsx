@@ -85,12 +85,12 @@ const Home = (props) => {
         {castings.map((casting, index) => {
           return (
             <div className="casting" key={casting.id + index}>
-              <h4>Date: {casting.created}</h4>
-              <h4>{casting.source_name}</h4>
+              <h4><span>Date:</span> {casting.created}</h4>
+              <h1>{casting.source_name}</h1>
               <img src={casting.source_image_url}></img>
-              <h5>Description: {casting.description}</h5>
+              <h5><span>Description:</span> {casting.description}</h5>
               <Edit handleUpdate={handleUpdate} id={casting.id} />
-              <button onClick={handleDelete} value={casting.id}>
+              <button className="btn" onClick={handleDelete} value={casting.id}>
                 X
               </button>
             </div>
