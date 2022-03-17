@@ -5,12 +5,30 @@ import Casting from "./components/Casting";
 import Home from "./components/Home";
 import "./styles/NavBar.css";
 import Auth from "./components/Auth";
+import axios from "axios";
 
 const App = () => {
   // store use data and auth token
   const [user, setUser] = useState(null);
   const [token, setToken] = useState("");
   const [error, setError] = useState(false);
+
+  const logout = () => {
+    axios
+      .post("https://bookcast-server.herokuapp.com/api/auth/logout", null, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Token " + token,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        setToken("");
+        setUser(null);
+        setError(false);
+      })
+      .catch((err) => setError(err));
+  };
 
   return (
     <>
@@ -25,9 +43,16 @@ const App = () => {
         <Link className="link" to="/discover">
           Discover
         </Link>
-        <Link className="link" to="/login">
-          Login
-        </Link>
+        {!user && (
+          <Link className="link" to="/login">
+            Login
+          </Link>
+        )}
+        {user && (
+          <button className="link" onClick={logout}>
+            Logout
+          </button>
+        )}
       </div>
       {/* castings, Discover   login */}
       <Routes>

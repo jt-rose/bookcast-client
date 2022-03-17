@@ -61,23 +61,6 @@ const Auth = (props) => {
       .catch((err) => props.errorData.setError(err));
   };
 
-  const logout = () => {
-    axios
-      .post(serverURL + "/api/auth/logout", null, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Token " + props.tokenData.token,
-        },
-      })
-      .then((response) => {
-        console.log(response);
-        props.tokenData.setToken("");
-        props.userData.setUser(null);
-        props.errorData.setError(false);
-      })
-      .catch((err) => props.errorData.setError(err));
-  };
-
   return (
     <div>
       {props.errorData.error && (
@@ -127,8 +110,6 @@ const Auth = (props) => {
       <button onClick={login}>login</button>
       <br />
       <button onClick={getUser}>get user</button>
-      <br />
-      <button onClick={logout}>logout</button>
     </div>
   );
 };
