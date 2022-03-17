@@ -5,6 +5,7 @@ import Casting from "./components/Casting";
 import Home from "./components/Home";
 import "./styles/NavBar.css";
 import Auth from "./components/Auth";
+import Cast from "./components/Cast";
 import axios from "axios";
 
 const App = () => {
@@ -99,6 +100,7 @@ const App = () => {
             />
           }
         />
+        <Route path="cast/:castid" element={<Cast />} />
         <Route path="/discover" element={<Discover />} />
         <Route
           path="/login"

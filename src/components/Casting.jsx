@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import Edit from "./Edit";
 import axios from "axios";
 import Add from "./Add";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Datas.css";
 
 const Casting = (props) => {
   let [castings, setCastings] = useState([]);
+
+  let navigate = useNavigate();
 
   const getCastings = () => {
     axios
@@ -81,7 +84,13 @@ const Casting = (props) => {
       <div className="castings">
         {castings.map((casting, index) => {
           return (
-            <div className="casting" key={casting.id + index}>
+            <div
+              className="casting"
+              key={casting.id + index}
+              onClick={() => {
+                navigate("/cast/" + casting.id);
+              }}
+            >
               <h4>Date: {casting.created}</h4>
               <h4>{casting.source_name}</h4>
               <img src={casting.source_image_url}></img>
