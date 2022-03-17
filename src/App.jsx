@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Discover from "./components/Discover";
 import Casting from "./components/Casting";
@@ -12,6 +12,37 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState("");
   const [error, setError] = useState(false);
+
+  const getUser = () => {
+    axios
+      .get("https://bookcast-server.herokuapp.com/api/auth/user", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Token " + token,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        setUser(response.data);
+        setError(false);
+      })
+      .catch((err) => setError(err));
+  };
+
+  useEffect(() => {
+    const storedToken = window.localStorage.getItem("token");
+    console.log(storedToken);
+    if (storedToken) {
+      setToken(storedToken);
+    } else {
+      setToken("");
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("token", token);
+    getUser();
+  }, [token]);
 
   let navigate = useNavigate();
 
