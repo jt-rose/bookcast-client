@@ -1,0 +1,26 @@
+@import "../variables/variables.scss";
+
+.navbar {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  background-color: $color5;
+
+  img {
+    height: 100px;
+    align-self: center;
+  }
+  
+  .navlinks {
+    margin-top: 30px;
+  }
+
+  .link{
+    @include linkStyle($color1, $color4);
+    position: relative;
+    top: 20px;
+    padding: 10px;
+    margin: 10px;
+  }
+}  
