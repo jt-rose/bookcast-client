@@ -1,0 +1,20 @@
+@import "../variables/variables.scss";
+
+.forms {
+    @include inputStyle(20px);
+    width: 400px;
+    margin: 20px;
+}
+.btn{
+    @include buttonStyle();
+}
+.login, .signup {
+    display:  flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid $color1;
+    margin: 20px;
+    text-align: center;
+    padding: 5px;
+    font-family: $font2;
+}

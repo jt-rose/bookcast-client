@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/auth.css";
 
 export const serverURL = "https://bookcast-server.herokuapp.com";
 //   process.env.NODE_ENV === "production"
@@ -73,48 +74,51 @@ const Auth = (props) => {
       )}
       <h1>Auth Test</h1>
       <p>Token: {props.tokenData.token ? props.tokenData.token : "NA"}</p>
+      <div className="signup">
       <label htmlFor="username">Username</label>
-      <input
+      <input className = "forms"
         type="text"
         id="username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
       <label htmlFor="password">Password</label>
-      <input
+      <input className = "forms"
         type="password"
         id="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
       <label htmlFor="email">Email</label>
-      <input
+      <input className = "forms"
         type="text"
         id="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
 
-      <button onClick={register}>Register</button>
+      <button className="btn" onClick={register}>Register</button>
       <br />
-
+        </div>
+        <div className="login">
       <label htmlFor="login-username">Login Username</label>
-      <input
+      <input className = "forms"
         type="text"
         id="login-username"
         value={loginUsername}
         onChange={(e) => setLoginUsername(e.target.value)}
       />
       <label htmlFor="login-password">Login Password</label>
-      <input
+      <input className = "forms"
         type="password"
         id="login-password"
         value={loginPassword}
         onChange={(e) => setLoginPassword(e.target.value)}
       />
-      <button onClick={login}>login</button>
+      <button className="btn" onClick={login}>login</button>
+      </div>
       <br />
-      <button onClick={getUser}>get user</button>
+      <button className="btn" onClick={getUser}>get user</button>
     </div>
   );
 };
