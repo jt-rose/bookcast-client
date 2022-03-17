@@ -1,19 +1,21 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const serverURL = "https://bookcast-server.herokuapp.com";
 //   process.env.NODE_ENV === "production"
 //     ? "https://bookcast-server.herokuapp.com"
 //     : "http://localhost:8000";
 
-const Auth = () => {
-  const [token, setToken] = useState("");
+const Auth = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+
+  let navigate = useNavigate();
 
   const register = (event) => {
     event.preventDefault();
@@ -25,8 +27,12 @@ const Auth = () => {
       })
       .then((response) => {
         console.log(response);
-        setToken(response.data.token);
-      });
+        props.tokenData.setToken(response.data.token);
+        props.userData.setUser(response.data.user);
+        props.errorData.setError(false);
+        navigate("/");
+      })
+      .catch((err) => props.errorData.setError(err));
   };
 
   const login = () => {
@@ -35,7 +41,13 @@ const Auth = () => {
         username: loginUsername,
         password: loginPassword,
       })
-      .then((response) => setToken(response.data.token));
+      .then((response) => {
+        props.tokenData.setToken(response.data.token);
+        props.userData.setUser(response.data.user);
+        props.errorData.setError(false);
+        navigate("/");
+      })
+      .catch((err) => props.errorData.setError(err));
   };
 
   const getUser = () => {
@@ -43,30 +55,24 @@ const Auth = () => {
       .get(serverURL + "/api/auth/user", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Token " + token,
-        },
-      })
-      .then((response) => console.log(response));
-  };
-
-  const logout = () => {
-    axios
-      .post(serverURL + "/api/auth/logout", null, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Token " + token,
+          Authorization: "Token " + props.tokenData.token,
         },
       })
       .then((response) => {
         console.log(response);
-        //setToken('')
-      });
+        props.userData.setUser(response.data);
+        props.errorData.setError(false);
+      })
+      .catch((err) => props.errorData.setError(err));
   };
 
   return (
     <div>
+      {props.errorData.error && (
+        <p style={{ color: "red" }}>Error: {props.errorData.error.message}</p>
+      )}
       <h1>Auth Test</h1>
-      <p>Token: {token ? token : "NA"}</p>
+      <p>Token: {props.tokenData.token ? props.tokenData.token : "NA"}</p>
       <label htmlFor="username">Username</label>
       <input
         type="text"
@@ -109,8 +115,6 @@ const Auth = () => {
       <button onClick={login}>login</button>
       <br />
       <button onClick={getUser}>get user</button>
-      <br />
-      <button onClick={logout}>logout</button>
     </div>
   );
 };

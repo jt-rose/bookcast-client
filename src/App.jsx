@@ -1,42 +1,108 @@
-import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Discover from "./components/Discover";
-import RecentList from "./components/RecentList";
-import Profile from "./components/Profile";
-import Login from "./components/Login";
+import Casting from "./components/Casting";
 import Home from "./components/Home";
 import "./styles/NavBar.css";
 import Auth from "./components/Auth";
+import axios from "axios";
 
 const App = () => {
+  // store use data and auth token
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState("");
+  const [error, setError] = useState(false);
+
+  const getUser = () => {
+    axios
+      .get("https://bookcast-server.herokuapp.com/api/auth/user", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Token " + token,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        setUser(response.data);
+        setError(false);
+      })
+      .catch((err) => setError(err));
+  };
+
+  useEffect(() => {
+    const storedToken = window.localStorage.getItem("token");
+    console.log(storedToken);
+    if (storedToken) {
+      setToken(storedToken);
+    } else {
+      setToken("");
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("token", token);
+    getUser();
+  }, [token]);
+
+  let navigate = useNavigate();
+
+  const logout = () => {
+    axios
+      .post("https://bookcast-server.herokuapp.com/api/auth/logout", null, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Token " + token,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        setToken("");
+        setUser(null);
+        setError(false);
+        navigate("/");
+      })
+      .catch((err) => setError(err));
+  };
+
   return (
     <>
       <div className="navbar">
-        <img src="../images/bookcastlogo.png" />
         <Link className="link" to="/">
-          Home
+          {" "}
+          <img className="logo" src="../images/bookcastlogo.png" />{" "}
+        </Link>
+        <Link className="link" to="/casting">
+          Casting
         </Link>
         <Link className="link" to="/discover">
           Discover
         </Link>
-        <Link className="link" to="/recent-list">
-          Recent List
-        </Link>
-        <Link className="link" to="/profile">
-          Profile
-        </Link>
-        <Link className="link" to="/login">
-          Login
-        </Link>
+        {!user && (
+          <Link className="link" to="/login">
+            Login
+          </Link>
+        )}
+        {user && (
+          <button className="link" onClick={logout}>
+            Logout
+          </button>
+        )}
       </div>
-
+      {/* castings, Discover   login */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/casting" element={<Casting />} />
         <Route path="/discover" element={<Discover />} />
-        <Route path="/recent-list" element={<RecentList />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/auth" element={<Auth />} />
+        <Route
+          path="/login"
+          element={
+            <Auth
+              userData={{ user, setUser }}
+              tokenData={{ token, setToken }}
+              errorData={{ error, setError }}
+            />
+          }
+        />
       </Routes>
     </>
   );
