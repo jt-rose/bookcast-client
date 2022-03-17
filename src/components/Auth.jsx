@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
 
-export const serverURL =
-  process.env.NODE_ENV === "production"
-    ? "https://bookcast.herokuapp.com"
-    : "http://localhost:8000";
+export const serverURL = "https://bookcast.herokuapp.com";
+//   process.env.NODE_ENV === "production"
+//     ? "https://bookcast.herokuapp.com"
+//     : "http://localhost:8000";
 
 const Auth = () => {
   const [token, setToken] = useState("");
