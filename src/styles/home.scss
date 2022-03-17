@@ -1,0 +1,21 @@
+@import "../variables/variables.scss";
+
+.addForm {
+    font-family: $font2;
+}
+.btn {
+    @include buttonStyle();
+    margin: 5px;
+}
+.forms {
+    @include inputStyle(20px);
+}
+.castings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: $font2;
+}
+.casting {
+    @include postStyle();
+}
