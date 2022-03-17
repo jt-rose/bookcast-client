@@ -1,0 +1,27 @@
+.castings {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+
+}
+.casting img {
+    width: 300px;
+}
+
+.addForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.addForm form {
+    align-self: center;
+}
+
+.addForm input[type=submit] {
+    align-self: center;
+}
+
+h1{
+    text-align: center;
+}
