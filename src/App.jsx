@@ -34,8 +34,6 @@ const App = () => {
     console.log(storedToken);
     if (storedToken) {
       setToken(storedToken);
-    } else {
-      setToken("");
     }
   }, []);
 
@@ -83,15 +81,24 @@ const App = () => {
           </Link>
         )}
         {user && (
-          <button className="link" onClick={logout}>
+          <Link className="link" to="/" onClick={logout}>
             Logout
-          </button>
+          </Link>
         )}
       </div>
       {/* castings, Discover   login */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/casting" element={<Casting />} />
+        <Route
+          path="/casting"
+          element={
+            <Casting
+              userData={{ user, setUser }}
+              tokenData={{ token, setToken }}
+              errorData={{ error, setError }}
+            />
+          }
+        />
         <Route path="/discover" element={<Discover />} />
         <Route
           path="/login"
