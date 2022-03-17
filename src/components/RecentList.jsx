@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import "../styles/Datas.css"
 
-const Login = () => {
+const RecentList = () => {
     return (
         <>
-        <h1>Login</h1>
+            <h1>recent list</h1>
         </>
     )
 }
 
-export default Login;
+export default RecentList;

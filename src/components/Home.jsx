@@ -1,31 +1,24 @@
 import React, { useState, useEffect } from 'react'
+import Edit from './Edit'
 import axios from 'axios'
-import {
-  Redirect,
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-  Switch,
-  useParams
-} from "react-router-dom" ;
-import Add from './components/Add'
-import Edit from './components/Edit'
-import Home from './components/Home'
-import NavBar from './components/navbar'
+import Add from './Add'
+import "../styles/Datas.css"
 
-const App = () => {
-  let [castings, setCastings] = useState([])
-  const getCastings = () => {
-    axios
-      .get('https://bookcast-server.herokuapp.com/api/castings/')
-      .then(
-        (response) => setCastings(response.data),
-        (err) => console.error(err)
-      )
-      .catch((error) => console.error(error))
-  }
-  const handleCreate = (addCasting) => {
+const Home = () => {
+
+    let [castings, setCastings] = useState([])
+
+    const getCastings = () => {
+     axios
+       .get('https://bookcast-server.herokuapp.com/api/castings/')
+       .then(
+         (response) => setCastings(response.data),
+         (err) => console.error(err)
+       )
+       .catch((error) => console.error(error))
+    }
+
+    const handleCreate = (addCasting) => {
     axios
       .post('https://bookcast-server.herokuapp.com/api/castings/', addCasting)
       .then((response) => {
@@ -48,23 +41,15 @@ const App = () => {
         getCastings()
       })
     }
-    useEffect(() => {
-      getCastings()
-    }, [])
 
-      return (
-      <>
-        <NavBar />
-        <Routes>
-        <Route path="/home" element={<Home />}/>
-        <Route path="/add" element={<Add />}/>
-        <Route path="/edit" element={<Edit />}/>
-        </Routes>
-      </>
-      )
-      <Add handleCreate={handleCreate} />
-      <h1>Book Cast</h1>
-      <div className="castings">
+    useEffect(() => {
+        getCastings()
+       }, [])
+
+    return (
+        <>
+        <Add handleUpdate={handleCreate} />
+    <div className="castings">
       {castings.map((casting, index) => {
         return (
           <div className="casting" key={casting.id + index}>
@@ -78,6 +63,13 @@ const App = () => {
           </div>
         )
       })}
-      </div>
+     </div>
+
+
+        
+        </>
+  
+    )
 }
-export default App
+
+export default Home;

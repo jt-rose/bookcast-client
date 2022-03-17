@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import "../styles/Datas.css"
 
-const Login = () => {
+const Discover = () => {
     return (
         <>
-        <h1>Login</h1>
+        <h1>discover</h1>
         </>
     )
 }
 
-export default Login;
+export default Discover;
