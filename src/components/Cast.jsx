@@ -8,7 +8,7 @@ const Cast = () => {
   const [castDatas, setCastDatas] = useState(null);
 
   let castingVotes = 0;
-  if (castDatas.votes) {
+  if (castDatas && castDatas.votes) {
     castingVotes = castDatas.votes
       .map((vote) => (vote.like ? 1 : -1))
       .reduce((x, y) => x + y);
@@ -36,14 +36,14 @@ const Cast = () => {
         <h5>Description: {castDatas.description}</h5>
         <h5>Casting Vote: {castingVotes}</h5>
         <h5>Casting Comments:</h5>
-        {castDatas.comments.map((comment) => (
-          <p>
-            {comment.user.username}: {comment.comment}
-          </p>
-        ))}
-        {castDatas.characters.map((char) => (
-          <Character character={char} />
-        ))}
+        {castDatas &&
+          castDatas.comments.map((comment) => (
+            <p>
+              {comment.user.username}: {comment.comment}
+            </p>
+          ))}
+        {castDatas &&
+          castDatas.characters.map((char) => <Character character={char} />)}
 
         {/* <button onClick={handleDelete} value={castDatas.id}>X</button> */}
       </>
