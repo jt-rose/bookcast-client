@@ -1,21 +1,11 @@
 const Character = (props) => {
-  const { name, actor, description, photo_url, votes_and_comments } =
+  const { name, actor, description, photo_url, votes, comments } =
     props.character;
 
-  console.log(votes_and_comments);
-  const totalVotes = votes_and_comments
-    .map((vnc) => {
-      switch (vnc.like) {
-        case true:
-          return 1;
-        case null:
-          return 0;
-        case false:
-          return -1;
-        default:
-          return 0;
-      }
-    })
+  console.log(votes);
+  console.log(comments);
+  const totalVotes = votes
+    .map((vote) => (vote.like ? 1 : -1))
     .reduce((x, y) => x + y);
   return (
     <div>
@@ -25,9 +15,9 @@ const Character = (props) => {
       <h4>Description: {description}</h4>
       <h3>Votes: {totalVotes}</h3>
       <h3>Comments:</h3>
-      {votes_and_comments.map((vnc) => (
+      {comments.map((comment) => (
         <div>
-          {vnc.user.username}: {vnc.comment}
+          {comment.user.username}: {comment.comment}
         </div>
       ))}
     </div>
