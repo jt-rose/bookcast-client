@@ -28,6 +28,71 @@ const Cast = (props) => {
   if (props.userData.user && castDatas) {
     isCreator = props.userData.user.id === castDatas.creator.id;
   }
+
+  let pastVoteId = null;
+  if (castDatas && props.userData.user) {
+    const priorVote = castDatas.votes.find(
+      (vote) => vote.user.id === props.userData.user.id
+    );
+    if (priorVote) {
+      pastVoteId = priorVote.id;
+    }
+  }
+
+  const getCasting = () => {
+    axios
+      .get(
+        "https://bookcast-server.herokuapp.com/api/castings/" + params.castid
+      )
+      .then((response) => {
+        console.log(response);
+        setCastDatas(response.data);
+        setName(response.data.source_name);
+        setImage_url(response.data.source_image_url);
+        setDescription(response.data.description);
+      });
+  };
+
+  const handleNewVote = (like) => {
+    axios
+      .post(
+        "https://bookcast-server.herokuapp.com/api/castingvotes/",
+        {
+          like,
+          casting: castDatas.id,
+          user: props.userData.user,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Token " + props.tokenData.token,
+          },
+        }
+      )
+      .then(() => getCasting())
+      .catch((err) => props.errorData.setError(err));
+  };
+  const handleVoteUpdate = (like) => {
+    axios
+      .put(
+        "https://bookcast-server.herokuapp.com/api/castingvotes/" +
+          pastVoteId +
+          "/",
+        {
+          like,
+          casting: castDatas.id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Token " + props.tokenData.token,
+          },
+        }
+      )
+      .then(() => getCasting())
+      .catch((err) => props.errorData.setError(err));
+  };
+
   const handleUpdate = (e) => {
     e.preventDefault();
     axios
@@ -74,20 +139,6 @@ const Cast = (props) => {
       .catch((err) => props.errorData.setError(err));
   };
 
-  const getCasting = () => {
-    axios
-      .get(
-        "https://bookcast-server.herokuapp.com/api/castings/" + params.castid
-      )
-      .then((response) => {
-        console.log(response);
-        setCastDatas(response.data);
-        setName(response.data.source_name);
-        setImage_url(response.data.source_image_url);
-        setDescription(response.data.description);
-      });
-  };
-
   useEffect(() => {
     getCasting();
   }, []);
@@ -101,8 +152,6 @@ const Cast = (props) => {
         <div className="mediadiv">
           <div className="castinfo">
             <h2 className="title">{castDatas.source_name}</h2>
-            <img src={castDatas.source_image_url}></img>
-            <h5>Description: {castDatas.description}</h5>
             <br />
             {isCreator && (
               <button onClick={() => setEdit(!edit)}>
@@ -136,7 +185,20 @@ const Cast = (props) => {
             )}
             <img src={castDatas.source_image_url}></img>
             <br />
-            <FaHeart /> <FaHeartBroken />
+            <FaHeart
+              onClick={
+                pastVoteId
+                  ? () => handleVoteUpdate(true)
+                  : () => handleNewVote(true)
+              }
+            />{" "}
+            <FaHeartBroken
+              onClick={
+                pastVoteId
+                  ? () => handleVoteUpdate(false)
+                  : () => handleNewVote(false)
+              }
+            />
             <h5>
               <span>Description:</span> {castDatas.description}
             </h5>
