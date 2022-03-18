@@ -98,13 +98,9 @@ const Cast = (props) => {
     return (
       <>
         <h1>Hi, this is cast id: {params.castid}</h1>
-<<<<<<< HEAD
         <div className="mediadiv">
         <div className="castinfo">
-        {!editName && <h2 className="title" >{castDatas.source_name}</h2>}
-        {editName && (
-=======
-        <h2>{castDatas.source_name}</h2>
+        <h2 className="title">{castDatas.source_name}</h2>
 
         <img src={castDatas.source_image_url}></img>
         <h5>Description: {castDatas.description}</h5>
@@ -116,7 +112,6 @@ const Cast = (props) => {
           </button>
         )}
         {edit && (
->>>>>>> a92c77bc65e4bb0f2741e1baad4120dec3dc4ed8
           <div>
             <label htmlFor="name">Name</label>
             <input
@@ -141,7 +136,6 @@ const Cast = (props) => {
             <button onClick={handleUpdate}>Update Casting Info</button>
           </div>
         )}
-<<<<<<< HEAD
         <button onClick={() => setEditName(!editName)}>
           {!editName ? "Edit" : "Cancel"}
         </button>
@@ -150,9 +144,7 @@ const Cast = (props) => {
           <FaHeart /> <FaHeartBroken />
           <h5><span>Description:</span> {castDatas.description}</h5>
         </div>
-=======
         <br />
->>>>>>> a92c77bc65e4bb0f2741e1baad4120dec3dc4ed8
         <input placeholder="...share a comment"></input>
         <input type="checkbox" name="like" id="like" />
         <h5>Casting Vote: {castingVotes}</h5>
@@ -175,11 +167,8 @@ const Cast = (props) => {
             castingId={castDatas.id}
           />
         )}
-
-<<<<<<< HEAD
-        {/* <button onClick={handleDelete} value={castDatas.id}>X</button> */}
         </div>
-=======
+
         {!willDelete && (
           <button onClick={() => setWillDelete(true)}>Delete Casting</button>
         )}
@@ -191,13 +180,11 @@ const Cast = (props) => {
             </p>
             <button onClick={handleDelete}>Yes, delete</button>
             <button onClick={() => setWillDelete(false)}>no thanks</button>
-          </>
+            </>
+           
         )}
->>>>>>> a92c77bc65e4bb0f2741e1baad4120dec3dc4ed8
-      </>
-      
-    );
+        </>
+    )
   }
-};
-
+}
 export default Cast;
