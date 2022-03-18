@@ -6,42 +6,61 @@ import Add from './Add'
 
 
 const Discover = (props) => {
-    let [datas, setDatas] = useState([])
+    let [discovers, setDiscovers] = useState([])
     let [filter, setFilter] = useState('')
     
-    const getDatas = () => {
+    const getDiscovers = () => {
         axios
         .get('https://bookcast-server.herokuapp.com/api/castings/')
         .then(
-          (response) => setDatas(response.data),
+          (response) => setDiscovers(response.data),
           (err) => console.error(err)
         )
         .catch((error) => console.error(error))
      }
 
 
-      const handleDelete = (event) => {
+     const handleDelete = (event) => {
         axios
-          .delete('https://bookcast-server.herokuapp.com/api/castings/' + event.target.value, 
-          {
+          .delete(
+            "https://bookcast-server.herokuapp.com/api/castings/" +
+              event.target.value,
+            {
               headers: {
-              "Content-Type": "application/json",
-              Authorization: "Token " + props.tokenData.token,
-            },
-          }
+                "Content-Type": "application/json",
+                Authorization: "Token " + props.tokenData.token,
+              },
+            }
           )
           .then((response) => {
-            setDatas()
-          })
-      }
-
+            getDiscovers();
+          });
+      };
     
       useEffect(() => {
 
-        getDatas()
+        getDiscovers()
        }, [])
 
-
+   const handleUpdate = (editCasting) => {
+    console.log(editCasting);
+    axios
+      .put(
+        "https://bookcast-server.herokuapp.com/api/castings/" +
+          editCasting.id +
+          "/",
+        editCasting,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Token " + props.tokenData.token,
+          },
+        }
+      )
+      .then((response) => {
+        getDiscovers();
+      });
+  };
 
 
     return (
@@ -49,21 +68,22 @@ const Discover = (props) => {
         <h1>discover</h1>
         <div className = 'searchDiv'>
 
-<input className = 'searchInput' type="text" placeholder="search..." value={filter} onChange={(e) => {e.preventDefault(); setFilter(e.target.value);
+<input className = 'searchInput' type="text" placeholder="search..." value={filter} onChange={(e) => 
+{e.preventDefault(); setFilter(e.target.value);
 }}
 ></input>
 </div>
         <div className="castings">
 
-      {datas.filter((search) =>
-        search.source_name.toLowerCase().includes(filter.toLowerCase())).map((data, index) => {
+      {discovers.filter((search) =>
+        search.source_name.toLowerCase().includes(filter.toLowerCase())).map((discover, index) => {
         return (
-          <div className="casting" key={data.id + index}>
-              <h4>Date: {data.created}</h4>
-            <h4>{data.source_name}</h4>
-            <img src = {data.source_image_url}></img>
-            <h5>Description: {data.description}</h5>
-            <button onClick={handleDelete} value={data.id}>X</button>
+          <div className="casting" key={discover.id + index}>
+              <h4>Date: {discover.created}</h4>
+            <h4>{discover.source_name}</h4>
+            <img src = {discover.source_image_url}></img>
+            <h5>Description: {discover.description}</h5>
+            <button onClick={handleDelete} value={discover.id}>X</button>
           </div>
         )
       })}

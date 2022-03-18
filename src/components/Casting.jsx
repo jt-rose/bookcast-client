@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import Edit from './Edit'
-import axios from 'axios'
-import Add from './Add'
-import "../styles/Datas.css"
+import React, { useState, useEffect } from "react";
+import Edit from "./Edit";
+import axios from "axios";
+import Add from "./Add";
 import { Link, useNavigate } from "react-router-dom";
+import "../styles/Datas.css";
 
-const Casting = () => {
+const Casting = (props) => {
 
     let [castings, setCastings] = useState([])
+    let [filter, setFilter] = useState('')
 
     let navigate = useNavigate();
 
@@ -23,7 +24,13 @@ const Casting = () => {
 
     const handleCreate = (addCasting) => {
     axios
-      .post('https://bookcast-server.herokuapp.com/api/castings/', addCasting)
+      .post('https://bookcast-server.herokuapp.com/api/castings/', addCasting,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Token " + props.tokenData.token,
+        },
+      })
       .then((response) => {
         console.log(response)
         getCastings()
@@ -31,29 +38,58 @@ const Casting = () => {
   }
   const handleDelete = (event) => {
     axios
-      .delete('https://bookcast-server.herokuapp.com/api/castings/' + event.target.value)
+      .delete(
+        "https://bookcast-server.herokuapp.com/api/castings/" +
+          event.target.value,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Token " + props.tokenData.token,
+          },
+        }
+      )
       .then((response) => {
-        getCastings()
-      })
-  }
-  const handleUpdate = (editCasting) => {
-    console.log(editCasting)
-    axios
-      .put('https://bookcast-server.herokuapp.com/api/castings/' + editCasting.id + '/', editCasting)
-      .then((response) => {
-        getCastings()
-      })
-    }
+        getCastings();
+      });
+  };
 
-    useEffect(() => {
-        getCastings()
-       }, [])
+   const handleUpdate = (editCasting) => {
+    console.log(editCasting);
+    axios
+      .put(
+        "https://bookcast-server.herokuapp.com/api/castings/" +
+          editCasting.id +
+          "/",
+        editCasting,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Token " + props.tokenData.token,
+          },
+        }
+      )
+      .then((response) => {
+        getCastings();
+      });
+  };
+
+  useEffect(() => {
+    getCastings();
+  }, []);
+
 
     return (
         <>
+        <div className = 'searchDiv'>
+        <input className = 'searchInput' type="text" placeholder="search..." value={filter} onChange={(e) => 
+{e.preventDefault(); setFilter(e.target.value);
+}}
+></input>
+</div>
         <Add handleCreate={handleCreate} />
     <div className="castings">
-      {castings.map((casting, index) => {
+    {castings.filter((search) =>
+        search.source_name.toLowerCase().includes(filter.toLowerCase())).map((casting, index) => {
         return (
           <div
               className="casting"
