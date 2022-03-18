@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Character from "./Character";
+import "../styles/cast.css";
+import { FaHeart, FaHeartBroken } from 'react-icons/fa';
 
 const Cast = () => {
   const params = useParams();
@@ -34,7 +36,9 @@ const Cast = () => {
     return (
       <>
         <h1>Hi, this is cast id: {params.castid}</h1>
-        {!editName && <h2>{castDatas.source_name}</h2>}
+        <div className="mediadiv">
+        <div className="castinfo">
+        {!editName && <h2 className="title" >{castDatas.source_name}</h2>}
         {editName && (
           <div>
             <input value={name} onChange={(e) => setName(e.target.value)} />
@@ -44,8 +48,11 @@ const Cast = () => {
         <button onClick={() => setEditName(!editName)}>
           {!editName ? "Edit" : "Cancel"}
         </button>
-        <img src={castDatas.source_image_url}></img>
-        <h5>Description: {castDatas.description}</h5>
+        
+          <img src={castDatas.source_image_url}></img><br />
+          <FaHeart /> <FaHeartBroken />
+          <h5><span>Description:</span> {castDatas.description}</h5>
+        </div>
         <input placeholder="...share a comment"></input>
         <input type="checkbox" name="like" id="like" />
         <h5>Casting Vote: {castingVotes}</h5>
@@ -56,11 +63,15 @@ const Cast = () => {
               {comment.user.username}: {comment.comment}
             </p>
           ))}
+          </div>
+          <div className="characterdiv">
         {castDatas &&
           castDatas.characters.map((char) => <Character character={char} />)}
 
         {/* <button onClick={handleDelete} value={castDatas.id}>X</button> */}
+        </div>
       </>
+      
     );
   }
 };

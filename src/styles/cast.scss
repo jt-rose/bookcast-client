@@ -1,0 +1,23 @@
+@import "../variables/variables.scss";
+
+.mediadiv {
+    @include postStyle();
+    margin: 0 auto;
+    text-align: center;
+    .title {
+        @include titleStyle(20px, $color1);
+    }
+    img {
+        width: 300px;
+        margin: 10px;
+        border: 1px solid $color1;
+        padding: 1px;
+    }
+    span {
+        color: $color3
+    }
+}
+
+.characterdiv {
+    display: flex;
+}
