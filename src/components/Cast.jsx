@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Character from "./Character";
 
 const Cast = (props) => {
@@ -10,6 +10,9 @@ const Cast = (props) => {
   const [name, setName] = useState("");
   const [image_url, setImage_url] = useState("");
   const [description, setDescription] = useState("");
+  const [willDelete, setWillDelete] = useState(false);
+
+  let navigate = useNavigate();
 
   let castingVotes = 0;
   if (castDatas && castDatas.votes) {
@@ -44,6 +47,26 @@ const Cast = (props) => {
       .then((response) => {
         setCastDatas(response.data);
         setEdit(false);
+      })
+      .catch((err) => props.errorData.setError(err));
+  };
+
+  const handleDelete = (event) => {
+    event.preventDefault();
+    axios
+      .delete(
+        "https://bookcast-server.herokuapp.com/api/castings/" +
+          castDatas.id +
+          "/",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Token " + props.tokenData.token,
+          },
+        }
+      )
+      .then(() => {
+        navigate("/");
       })
       .catch((err) => props.errorData.setError(err));
   };
@@ -118,7 +141,19 @@ const Cast = (props) => {
         {castDatas &&
           castDatas.characters.map((char) => <Character character={char} />)}
 
-        {/* <button onClick={handleDelete} value={castDatas.id}>X</button> */}
+        {!willDelete && (
+          <button onClick={() => setWillDelete(true)}>Delete Casting</button>
+        )}
+        {willDelete && (
+          <>
+            <p>
+              Are you sure you want to delete this casting? It will be gone for
+              good!
+            </p>
+            <button onClick={handleDelete}>Yes, delete</button>
+            <button onClick={() => setWillDelete(false)}>no thanks</button>
+          </>
+        )}
       </>
     );
   }
