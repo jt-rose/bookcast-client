@@ -4,8 +4,10 @@ import Discover from "./components/Discover";
 import Casting from "./components/Casting";
 import Home from "./components/Home";
 import "./styles/NavBar.css";
+import "./styles/footer.css";
 import Auth from "./components/Auth";
 import Cast from "./components/Cast";
+import Footer from "./components/footer";
 import axios from "axios";
 
 const App = () => {
@@ -125,6 +127,7 @@ const App = () => {
           }
         />
       </Routes>
+      <Footer />
     </>
   );
 };

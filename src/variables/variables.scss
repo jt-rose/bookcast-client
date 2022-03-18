@@ -4,6 +4,7 @@ $color2: #A2A3BB;
 $color3: #9395D3;
 $color4: #B3B7EE;
 $color5: #FBF9FF;
+
 //fonts
 $font1: 'Sansita Swashed', cursive;
 $font2: 'Source Code Pro', monospace;
@@ -74,7 +75,10 @@ $font2: 'Source Code Pro', monospace;
     &:focus {
     border-bottom: 5px solid $color3;
     }
+
+   
 }
+
 @mixin titleStyle($size, $color) {
     text-shadow: #474747 3px 5px 2px;
     font-size: $size;

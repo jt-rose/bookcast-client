@@ -92,6 +92,7 @@ const Casting = (props) => {
       </div>
       {props.userData.user && <Add handleCreate={handleCreate} />}
 
+
       <div className="castings">
         {castings
           .filter((search) =>
