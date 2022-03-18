@@ -1,3 +1,6 @@
+
+import "../styles/character.css";
+import { FaHeart, FaHeartBroken } from 'react-icons/fa';
 import { useState } from "react";
 import axios from "axios";
 
@@ -67,13 +70,17 @@ const Character = (props) => {
       <h3>Played by {props.character.actor}</h3>
       <h4>Description: {props.character.description}</h4>
       <h3>Votes: {totalVotes}</h3>
+      <div className="comments">
       <h3>Comments:</h3>
+
       {props.character.comments.map((comment) => (
-        <div key={props.character.id + "-char-comment-" + comment.id}>
-          {comment.user.username}: {comment.comment}
+        <div key={props.character.id + "-char-comment-" + comment.id} className="comment">
+          <span>{comment.user.username}:</span> {comment.comment}
+
         </div>
       ))}
-      <input placeholder="...share a comment"></input>
+      <input className="forms" placeholder="...share a comment"></input>
+      </div>
       <input type="checkbox" name="like" id="like" />
       <br />
       {props.isCreator && (

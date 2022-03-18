@@ -1,0 +1,72 @@
+.mediadiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+  border: 1px solid #000807;
+  -webkit-box-shadow: #9395D3 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+          box-shadow: #9395D3 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  margin: 20px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mediadiv h1 {
+  text-shadow: #474747 3px 5px 2px;
+  font-size: 20px;
+  color: #000807;
+  font-family: "Sansita Swashed", cursive;
+}
+
+.mediadiv h4 {
+  font-family: "Source Code Pro", monospace;
+  font-size: 10px;
+  margin: 10px;
+}
+
+.mediadiv h5 {
+  font-size: 15px;
+}
+
+.mediadiv span {
+  color: #9395D3;
+}
+
+.mediadiv img {
+  width: 300px;
+  margin: 0 auto;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+          box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+}
+
+.mediadiv .title {
+  text-shadow: #474747 3px 5px 2px;
+  font-size: 20px;
+  color: #000807;
+  font-family: "Sansita Swashed", cursive;
+}
+
+.mediadiv img {
+  width: 300px;
+  margin: 10px;
+  border: 1px solid #000807;
+  padding: 1px;
+}
+
+.mediadiv span {
+  color: #9395D3;
+}
+
+.characterdiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/*# sourceMappingURL=cast.css.map */
