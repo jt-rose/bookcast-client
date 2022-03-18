@@ -105,7 +105,16 @@ const App = () => {
             />
           }
         />
-        <Route path="cast/:castid" element={<Cast />} />
+        <Route
+          path="cast/:castid"
+          element={
+            <Cast
+              userData={{ user, setUser }}
+              tokenData={{ token, setToken }}
+              errorData={{ error, setError }}
+            />
+          }
+        />
         <Route
           path="/discover"
           element={

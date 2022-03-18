@@ -35,42 +35,6 @@ const Casting = (props) => {
         navigate("/cast/" + response.data.id);
       });
   };
-  const handleDelete = (event) => {
-    axios
-      .delete(
-        "https://bookcast-server.herokuapp.com/api/castings/" +
-          event.target.value,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Token " + props.tokenData.token,
-          },
-        }
-      )
-      .then((response) => {
-        getCastings();
-      });
-  };
-
-  const handleUpdate = (editCasting) => {
-    console.log(editCasting);
-    axios
-      .put(
-        "https://bookcast-server.herokuapp.com/api/castings/" +
-          editCasting.id +
-          "/",
-        editCasting,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Token " + props.tokenData.token,
-          },
-        }
-      )
-      .then((response) => {
-        getCastings();
-      });
-  };
 
   useEffect(() => {
     getCastings();
@@ -92,7 +56,6 @@ const Casting = (props) => {
       </div>
       {props.userData.user && <Add handleCreate={handleCreate} />}
 
-
       <div className="castings">
         {castings
           .filter((search) =>
@@ -111,10 +74,6 @@ const Casting = (props) => {
                 <h4>{casting.source_name}</h4>
                 <img src={casting.source_image_url}></img>
                 <h5>Description: {casting.description}</h5>
-                <Edit handleUpdate={handleUpdate} id={casting.id} />
-                <button onClick={handleDelete} value={casting.id}>
-                  X
-                </button>
               </div>
             );
           })}
