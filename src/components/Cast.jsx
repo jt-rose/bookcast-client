@@ -7,6 +7,13 @@ const Cast = () => {
   const params = useParams();
   const [castDatas, setCastDatas] = useState(null);
 
+  let castingVotes = 0;
+  if (castDatas.votes) {
+    castingVotes = castDatas.votes
+      .map((vote) => (vote.like ? 1 : -1))
+      .reduce((x, y) => x + y);
+  }
+
   useEffect(() => {
     axios
       .get(
@@ -27,6 +34,13 @@ const Cast = () => {
         <h2>{castDatas.source_name}</h2>
         <img src={castDatas.source_image_url}></img>
         <h5>Description: {castDatas.description}</h5>
+        <h5>Casting Vote: {castingVotes}</h5>
+        <h5>Casting Comments:</h5>
+        {castDatas.comments.map((comment) => (
+          <p>
+            {comment.user.username}: {comment.comment}
+          </p>
+        ))}
         {castDatas.characters.map((char) => (
           <Character character={char} />
         ))}
