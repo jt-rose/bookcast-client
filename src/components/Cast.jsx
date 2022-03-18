@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Character from "./Character";
+import "../styles/cast.css";
+import { FaHeart, FaHeartBroken } from 'react-icons/fa';
 import AddCharacter from "./AddCharacter";
 
 const Cast = (props) => {
@@ -96,7 +98,9 @@ const Cast = (props) => {
     return (
       <>
         <h1>Hi, this is cast id: {params.castid}</h1>
-        <h2>{castDatas.source_name}</h2>
+        <div className="mediadiv">
+        <div className="castinfo">
+        <h2 className="title">{castDatas.source_name}</h2>
 
         <img src={castDatas.source_image_url}></img>
         <h5>Description: {castDatas.description}</h5>
@@ -132,6 +136,14 @@ const Cast = (props) => {
             <button onClick={handleUpdate}>Update Casting Info</button>
           </div>
         )}
+        <button onClick={() => setEditName(!editName)}>
+          {!editName ? "Edit" : "Cancel"}
+        </button>
+        
+          <img src={castDatas.source_image_url}></img><br />
+          <FaHeart /> <FaHeartBroken />
+          <h5><span>Description:</span> {castDatas.description}</h5>
+        </div>
         <br />
         <input placeholder="...share a comment"></input>
         <input type="checkbox" name="like" id="like" />
@@ -143,6 +155,8 @@ const Cast = (props) => {
               {comment.user.username}: {comment.comment}
             </p>
           ))}
+          </div>
+          <div className="characterdiv">
         {castDatas &&
           castDatas.characters.map((char) => (
             <Character
@@ -162,6 +176,7 @@ const Cast = (props) => {
             castingId={castDatas.id}
           />
         )}
+        </div>
 
         {!willDelete && (
           <button onClick={() => setWillDelete(true)}>Delete Casting</button>
@@ -174,11 +189,11 @@ const Cast = (props) => {
             </p>
             <button onClick={handleDelete}>Yes, delete</button>
             <button onClick={() => setWillDelete(false)}>no thanks</button>
-          </>
+            </>
+           
         )}
-      </>
-    );
+        </>
+    )
   }
-};
-
+}
 export default Cast;
