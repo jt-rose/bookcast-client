@@ -139,12 +139,21 @@ const Cast = (props) => {
         <h5>Casting Comments:</h5>
         {castDatas &&
           castDatas.comments.map((comment) => (
-            <p>
+            <p key={"comment-" + comment.id}>
               {comment.user.username}: {comment.comment}
             </p>
           ))}
         {castDatas &&
-          castDatas.characters.map((char) => <Character character={char} />)}
+          castDatas.characters.map((char) => (
+            <Character
+              key={"char" + char.id}
+              character={char}
+              tokenData={props.tokenData}
+              getCasting={getCasting}
+              errorData={props.errorData}
+              isCreator={isCreator}
+            />
+          ))}
         {isCreator && (
           <AddCharacter
             tokenData={props.tokenData}
