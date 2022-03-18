@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Character from "./Character";
+import AddCharacter from "./AddCharacter";
 
 const Cast = (props) => {
   const params = useParams();
@@ -71,7 +72,7 @@ const Cast = (props) => {
       .catch((err) => props.errorData.setError(err));
   };
 
-  useEffect(() => {
+  const getCasting = () => {
     axios
       .get(
         "https://bookcast-server.herokuapp.com/api/castings/" + params.castid
@@ -83,6 +84,10 @@ const Cast = (props) => {
         setImage_url(response.data.source_image_url);
         setDescription(response.data.description);
       });
+  };
+
+  useEffect(() => {
+    getCasting();
   }, []);
 
   if (!castDatas) {
@@ -140,6 +145,14 @@ const Cast = (props) => {
           ))}
         {castDatas &&
           castDatas.characters.map((char) => <Character character={char} />)}
+        {isCreator && (
+          <AddCharacter
+            tokenData={props.tokenData}
+            errorData={props.errorData}
+            getCasting={getCasting}
+            castingId={castDatas.id}
+          />
+        )}
 
         {!willDelete && (
           <button onClick={() => setWillDelete(true)}>Delete Casting</button>
