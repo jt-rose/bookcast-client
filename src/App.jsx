@@ -72,9 +72,12 @@ const App = () => {
           {" "}
           <img className="logo" src="../images/bookcastlogo.png" />{" "}
         </Link>
-        <Link className="link" to="/casting">
-          Casting
-        </Link>
+        {user && (
+          <Link className="link" to="/casting">
+            Casting
+          </Link>
+        )}
+
         <Link className="link" to="/discover">
           Discover
         </Link>
@@ -103,14 +106,16 @@ const App = () => {
           }
         />
         <Route path="cast/:castid" element={<Cast />} />
-        <Route path="/discover" element={
-        <Discover 
-        userData={{ user, setUser }}
-        tokenData={{ token, setToken }}
-        errorData={{ error, setError }}
+        <Route
+          path="/discover"
+          element={
+            <Discover
+              userData={{ user, setUser }}
+              tokenData={{ token, setToken }}
+              errorData={{ error, setError }}
+            />
+          }
         />
-       } 
-      />
         <Route
           path="/login"
           element={

@@ -6,7 +6,7 @@ const Character = (props) => {
   console.log(comments);
   const totalVotes = votes
     .map((vote) => (vote.like ? 1 : -1))
-    .reduce((x, y) => x + y);
+    .reduce((x, y) => x + y, 0);
   return (
     <div>
       <img src={photo_url} alt={actor + "-photo"} />
@@ -20,6 +20,8 @@ const Character = (props) => {
           {comment.user.username}: {comment.comment}
         </div>
       ))}
+      <input placeholder="...share a comment"></input>
+      <input type="checkbox" name="like" id="like" />
     </div>
   );
 };
