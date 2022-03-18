@@ -103,7 +103,14 @@ const App = () => {
           }
         />
         <Route path="cast/:castid" element={<Cast />} />
-        <Route path="/discover" element={<Discover />} />
+        <Route path="/discover" element={
+        <Discover 
+        userData={{ user, setUser }}
+        tokenData={{ token, setToken }}
+        errorData={{ error, setError }}
+        />
+       } 
+      />
         <Route
           path="/login"
           element={
