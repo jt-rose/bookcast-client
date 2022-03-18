@@ -5,7 +5,7 @@ import Character from "./Character";
 
 const Cast = () => {
   const params = useParams();
-  const [castDatas, setCastDatas] = useState([]);
+  const [castDatas, setCastDatas] = useState(null);
 
   useEffect(() => {
     axios
