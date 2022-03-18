@@ -80,12 +80,6 @@ const Casting = (props) => {
 
     return (
         <>
-        <div className = 'searchDiv'>
-        <input className = 'searchInput' type="text" placeholder="search..." value={filter} onChange={(e) => 
-{e.preventDefault(); setFilter(e.target.value);
-}}
-></input>
-</div>
         <Add handleCreate={handleCreate} />
     <div className="castings">
     {castings.filter((search) =>

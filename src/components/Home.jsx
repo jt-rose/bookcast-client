@@ -75,12 +75,6 @@ const Home = (props) => {
 
   return (
     <>
-      <Add
-        handleCreate={handleCreate}
-        // userData={props.userData}
-        // tokenData={props.tokenData}
-        // errorData={props.errorData}
-      />
       <div className="castings">
         {castings.map((casting, index) => {
           return (
