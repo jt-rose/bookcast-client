@@ -52,8 +52,7 @@ const Login = (props) => {
     
         <div className="login">
         <Link to ='/register'> <button className="auth" >Don't have an account yet?</button></Link>
-
-     <form>
+      <div className="loginInput">
       <label htmlFor="login-username"> Username</label>
       <input className = "forms"
         type="text"
@@ -69,8 +68,7 @@ const Login = (props) => {
         onChange={(e) => setLoginPassword(e.target.value)}
       />
       <button className="btn" onClick={login}>login</button>
-      </form>
-     
+      </div>
       </div>
 
       {/* <button className="btn" onClick={getUser}>get user</button> */}

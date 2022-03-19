@@ -24,24 +24,26 @@ html {
 }
 
 .signup input {
+    @include inputStyle(20px);
     background-color: $color6;
     letter-spacing: 2px;
 }
 
 .login input {
+    @include inputStyle(20px);
     background-color: $color6;
     letter-spacing: 2px;
 }
 
 
-.login form {
+.signupInput {
     margin-top: 20px;
     width: 300px;
     text-align: center;
     align-self: center;
 }
 
-.signup form {
+.loginInput {
     margin-top: 20px;
     width: 300px;
     text-align: center;
@@ -104,15 +106,30 @@ html {
 
 //++ DISCOVER ++//
 .discovers {
-   display: flex;
-   justify-content: space-around;
-   flex-direction: row;
-   flex-wrap: wrap;
-    align-content: center;
+    margin-top: 10vmin;
+    margin-left: 15vmin;
+    margin-right: 15vmin;
+    margin-bottom: 10vmin;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: flex-start;
+    gap: 50px;
 }
 
-.discover p{
+.discover {
+    width: 280px;
+    list-style-type: none;
+    border: 0.5px solid $color1;
+
+}
+
+.dis-date {
+    
     font-size: 12px;
+    font-weight: 600;
 }
 
 .discover img{
@@ -125,5 +142,28 @@ html {
 }
 
 .searchDiv input {
-   text-align: center;
+    text-align: center;
+    width: 250px;
+    height: 25px;
+}
+
+.dis-desc {
+    margin: 20px;
+}
+
+
+//++ CASTINGS ++//
+.addForm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10vh;
+    padding: 5px;
+    font-family: $font1;
+    align-items: center;
+    
+}
+
+.addForm input {
+    @include inputStyle(20px);
+
 }

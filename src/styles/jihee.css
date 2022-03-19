@@ -63,16 +63,46 @@ html {
 }
 
 .signup input {
+  display: block;
+  font-size: 20px;
+  line-height: 40px;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 40px;
+  border: none;
+  border-bottom: 3.5px solid #000807;
+  min-width: 250px;
+  padding-left: 5px;
+  outline: none;
+  color: #000807;
   background-color: #f8f7e9;
   letter-spacing: 2px;
+}
+
+.signup input:focus {
+  border-bottom: 3.5px solid #8C4830;
 }
 
 .login input {
+  display: block;
+  font-size: 20px;
+  line-height: 40px;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 40px;
+  border: none;
+  border-bottom: 3.5px solid #000807;
+  min-width: 250px;
+  padding-left: 5px;
+  outline: none;
+  color: #000807;
   background-color: #f8f7e9;
   letter-spacing: 2px;
 }
 
-.login form {
+.login input:focus {
+  border-bottom: 3.5px solid #8C4830;
+}
+
+.signupInput {
   margin-top: 20px;
   width: 300px;
   text-align: center;
@@ -81,7 +111,7 @@ html {
       align-self: center;
 }
 
-.signup form {
+.loginInput {
   margin-top: 20px;
   width: 300px;
   text-align: center;
@@ -147,23 +177,38 @@ html {
 }
 
 .discovers {
+  margin-top: 10vmin;
+  margin-left: 15vmin;
+  margin-right: 15vmin;
+  margin-bottom: 10vmin;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  text-align: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 50px;
 }
 
-.discover p {
+.discover {
+  width: 280px;
+  list-style-type: none;
+  border: 0.5px solid #000807;
+}
+
+.dis-date {
   font-size: 12px;
+  font-weight: 600;
 }
 
 .discover img {
@@ -181,5 +226,45 @@ html {
 
 .searchDiv input {
   text-align: center;
+  width: 250px;
+  height: 25px;
+}
+
+.dis-desc {
+  margin: 20px;
+}
+
+.addForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 10vh;
+  padding: 5px;
+  font-family: "Montserrat", sans-serif;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.addForm input {
+  display: block;
+  font-size: 20px;
+  line-height: 40px;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 40px;
+  border: none;
+  border-bottom: 3.5px solid #000807;
+  min-width: 250px;
+  padding-left: 5px;
+  outline: none;
+  color: #000807;
+}
+
+.addForm input:focus {
+  border-bottom: 3.5px solid #8C4830;
 }
 /*# sourceMappingURL=jihee.css.map */

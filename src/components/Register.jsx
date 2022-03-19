@@ -14,9 +14,6 @@ const Register = (props) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
-  const [loginUsername, setLoginUsername] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-
   let navigate = useNavigate();
 
   const register = (event) => {
@@ -60,7 +57,7 @@ const Register = (props) => {
       <div className="signup">
       <Link to= '/login'><button className="auth">Already have an account?</button></Link>
 
-      <form>
+      <div className="signupInput">
       <label htmlFor="username">Username</label>
       <input className = "forms"
         type="text"
@@ -83,8 +80,8 @@ const Register = (props) => {
         onChange={(e) => setEmail(e.target.value)}
       />
       <button className="btn" onClick={register}>Register</button>
-      </form>
-        </div>
+      </div>
+      </div>
 
 
       {/* <button className="btn" onClick={getUser}>get user</button> */}
