@@ -119,4 +119,7 @@ const Discover = (props) => {
   );
 };
 
+
 export default Discover;
+
+
