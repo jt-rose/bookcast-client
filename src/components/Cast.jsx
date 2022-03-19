@@ -14,6 +14,7 @@ const Cast = (props) => {
   const [image_url, setImage_url] = useState("");
   const [description, setDescription] = useState("");
   const [willDelete, setWillDelete] = useState(false);
+  const [newComment, setNewComment] = useState("");
 
   let navigate = useNavigate();
 
@@ -85,6 +86,44 @@ const Cast = (props) => {
           like,
           casting: castDatas.id,
         },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Token " + props.tokenData.token,
+          },
+        }
+      )
+      .then(() => getCasting())
+      .catch((err) => props.errorData.setError(err));
+  };
+
+  const handleCreateNewComment = () => {
+    axios
+      .post(
+        "https://bookcast-server.herokuapp.com/api/castingcomments/",
+        {
+          comment: newComment,
+          casting: castDatas.id,
+          user: props.userData.user,
+          user_id: props.userData.user.id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Token " + props.tokenData.token,
+          },
+        }
+      )
+      .then(() => getCasting())
+      .catch((err) => props.errorData.setError(err));
+  };
+
+  const handleDeleteComment = (commentId) => {
+    axios
+      .delete(
+        "https://bookcast-server.herokuapp.com/api/castingcomments/" +
+          commentId +
+          "/",
         {
           headers: {
             "Content-Type": "application/json",
@@ -194,8 +233,6 @@ const Cast = (props) => {
             </h5>
           </div>
           <br />
-          <input placeholder="...share a comment"></input>
-          <input type="checkbox" name="like" id="like" />
           <FaHeart
             style={{ color: pastVoteLike ? "red" : "gray" }}
             onClick={
@@ -213,12 +250,28 @@ const Cast = (props) => {
             }
           />
           <h5>Casting Vote: {castingVotes}</h5>
+          <label htmlFor="add-new-casting-comment">Add New Comment</label>
+          <input
+            id="add-new-casting-comment"
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+            placeholder="...share a comment"
+          />
+          <button onClick={handleCreateNewComment}>Add</button>
           <h5>Casting Comments:</h5>
           {castDatas &&
             castDatas.comments.map((comment) => (
-              <p key={"comment-" + comment.id}>
-                {comment.user.username}: {comment.comment}
-              </p>
+              <div>
+                <p key={"comment-" + comment.id}>
+                  {comment.user.username}: {comment.comment}
+                </p>
+                {props.userData.user &&
+                  comment.user.id === props.userData.user.id && (
+                    <button onClick={() => handleDeleteComment(comment.id)}>
+                      X
+                    </button>
+                  )}
+              </div>
             ))}
         </div>
         <div className="characterdiv">
