@@ -61,6 +61,7 @@ const Cast = (props) => {
           like,
           casting: castDatas.id,
           user: props.userData.user,
+          user_id: props.userData.user.id,
         },
         {
           headers: {
@@ -185,20 +186,7 @@ const Cast = (props) => {
             )}
             <img src={castDatas.source_image_url}></img>
             <br />
-            <FaHeart
-              onClick={
-                pastVoteId
-                  ? () => handleVoteUpdate(true)
-                  : () => handleNewVote(true)
-              }
-            />{" "}
-            <FaHeartBroken
-              onClick={
-                pastVoteId
-                  ? () => handleVoteUpdate(false)
-                  : () => handleNewVote(false)
-              }
-            />
+
             <h5>
               <span>Description:</span> {castDatas.description}
             </h5>
@@ -206,6 +194,20 @@ const Cast = (props) => {
           <br />
           <input placeholder="...share a comment"></input>
           <input type="checkbox" name="like" id="like" />
+          <FaHeart
+            onClick={
+              pastVoteId
+                ? () => handleVoteUpdate(true)
+                : () => handleNewVote(true)
+            }
+          />{" "}
+          <FaHeartBroken
+            onClick={
+              pastVoteId
+                ? () => handleVoteUpdate(false)
+                : () => handleNewVote(false)
+            }
+          />
           <h5>Casting Vote: {castingVotes}</h5>
           <h5>Casting Comments:</h5>
           {castDatas &&
@@ -221,6 +223,7 @@ const Cast = (props) => {
               <Character
                 key={"char" + char.id}
                 character={char}
+                userData={props.userData}
                 tokenData={props.tokenData}
                 getCasting={getCasting}
                 errorData={props.errorData}

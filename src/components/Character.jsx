@@ -1,6 +1,5 @@
-
 import "../styles/character.css";
-import { FaHeart, FaHeartBroken } from 'react-icons/fa';
+import { FaHeart, FaHeartBroken } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
 
@@ -14,6 +13,57 @@ const Character = (props) => {
   const totalVotes = props.character.votes
     .map((vote) => (vote.like ? 1 : -1))
     .reduce((x, y) => x + y, 0);
+
+  let pastVoteId = null;
+  if (props.userData && props.userData.user) {
+    const priorVote = props.character.votes.find(
+      (vote) => vote.user.id === props.userData.user.id
+    );
+    if (priorVote) {
+      pastVoteId = priorVote.id;
+    }
+  }
+
+  const handleNewVote = (like) => {
+    axios
+      .post(
+        "https://bookcast-server.herokuapp.com/api/charactervotes/",
+        {
+          like,
+          character: props.character.id,
+          user: props.userData.user,
+          user_id: props.userData.user.id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Token " + props.tokenData.token,
+          },
+        }
+      )
+      .then(() => props.getCasting())
+      .catch((err) => props.errorData.setError(err));
+  };
+  const handleVoteUpdate = (like) => {
+    axios
+      .put(
+        "https://bookcast-server.herokuapp.com/api/charactervotes/" +
+          pastVoteId +
+          "/",
+        {
+          like,
+          character: props.character.id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Token " + props.tokenData.token,
+          },
+        }
+      )
+      .then(() => props.getCasting())
+      .catch((err) => props.errorData.setError(err));
+  };
 
   const handleUpdate = () => {
     axios
@@ -61,28 +111,45 @@ const Character = (props) => {
   };
 
   return (
-
     <div className="charactercard">
       <img
         src={props.character.photo_url}
         alt={props.character.actor + "-photo"}
       />
       <h1>{props.character.name}</h1>
-      <h3>Played by <span>{props.character.actor}</span></h3><br />
-        <FaHeart /> <FaHeartBroken />
-      <h4><span>Description: </span>{props.character.description}</h4>
-
+      <h3>
+        Played by <span>{props.character.actor}</span>
+      </h3>
+      <br />
+      <h4>
+        <span>Description: </span>
+        {props.character.description}
+      </h4>
+      <FaHeart
+        onClick={
+          pastVoteId ? () => handleVoteUpdate(true) : () => handleNewVote(true)
+        }
+      />{" "}
+      <FaHeartBroken
+        onClick={
+          pastVoteId
+            ? () => handleVoteUpdate(false)
+            : () => handleNewVote(false)
+        }
+      />
       <h3>Votes: {totalVotes}</h3>
       <div className="comments">
-      <h3>Comments:</h3>
+        <h3>Comments:</h3>
 
-      {props.character.comments.map((comment) => (
-        <div key={props.character.id + "-char-comment-" + comment.id} className="comment">
-          <span>{comment.user.username}:</span> {comment.comment}
-
-        </div>
-      ))}
-      <input className="forms" placeholder="...share a comment"></input>
+        {props.character.comments.map((comment) => (
+          <div
+            key={props.character.id + "-char-comment-" + comment.id}
+            className="comment"
+          >
+            <span>{comment.user.username}:</span> {comment.comment}
+          </div>
+        ))}
+        <input className="forms" placeholder="...share a comment"></input>
       </div>
       <input type="checkbox" name="like" id="like" />
       <br />
