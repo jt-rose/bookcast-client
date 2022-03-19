@@ -1,4 +1,3 @@
-
 import "../styles/character.css";
 import { FaHeart, FaHeartBroken } from 'react-icons/fa';
 import { useState } from "react";
@@ -61,14 +60,17 @@ const Character = (props) => {
   };
 
   return (
-    <div>
-      <h1>{props.character.name}</h1>
+
+    <div className="charactercard">
       <img
         src={props.character.photo_url}
         alt={props.character.actor + "-photo"}
       />
-      <h3>Played by {props.character.actor}</h3>
-      <h4>Description: {props.character.description}</h4>
+      <h1>{props.character.name}</h1>
+      <h3>Played by <span>{props.character.actor}</span></h3><br />
+        <FaHeart /> <FaHeartBroken />
+      <h4><span>Description: </span>{props.character.description}</h4>
+
       <h3>Votes: {totalVotes}</h3>
       <div className="comments">
       <h3>Comments:</h3>

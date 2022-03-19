@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import Edit from "./Edit";
 import axios from "axios";
 import Add from "./Add";
-import "../styles/Datas.css";
-import "../styles/home.css";
+// import "../styles/Datas.css";
+// import "../styles/home.css";
 
 // Home and Castings are currently the same - update later
 
@@ -75,7 +75,21 @@ const Home = (props) => {
 
   return (
     <>
-      <div className="castings">
+      <h1>Welcome to BookCast!</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
+         eligendi obcaecati. Debitis libero ab ea eaque repellendus, 
+        pariatur magnam eveniet voluptatibus quo nostrum. Aliquam modi
+       ratione corporis? Possimus, impedit quis!</p>
+       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
+         eligendi obcaecati. Debitis libero ab ea eaque repellendus, 
+        pariatur magnam eveniet voluptatibus quo nostrum. Aliquam modi
+       ratione corporis? Possimus, impedit quis!</p>
+       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
+         eligendi obcaecati. Debitis libero ab ea eaque repellendus, 
+        pariatur magnam eveniet voluptatibus quo nostrum. Aliquam modi
+       ratione corporis? Possimus, impedit quis!</p>
+      {/* <div className="castings">
+
         {castings.map((casting, index) => {
           return (
             <div className="casting" key={casting.id + index}>
@@ -90,7 +104,7 @@ const Home = (props) => {
             </div>
           );
         })}
-      </div>
+      </div> */}
     </>
   );
 };

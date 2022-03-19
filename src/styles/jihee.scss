@@ -1,0 +1,129 @@
+@import "../variables/jihee_var.scss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+    background-color: $color6;
+}
+//++ LOGIN & REGISTER PAGE ++//
+
+.btn{
+    @include buttonStyle();
+}
+
+.login, .signup {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10vh;
+    padding: 5px;
+    font-family: $font1;
+    align-items: center;
+}
+
+.login, .signup label {
+    letter-spacing: 2px;
+}
+
+.signup input {
+    background-color: $color6;
+    letter-spacing: 2px;
+}
+
+.login input {
+    background-color: $color6;
+    letter-spacing: 2px;
+}
+
+
+.login form {
+    margin-top: 20px;
+    width: 300px;
+    text-align: center;
+    align-self: center;
+}
+
+.signup form {
+    margin-top: 20px;
+    width: 300px;
+    text-align: center;
+    align-self: center;
+}
+
+
+.auth {
+    // width: 300px;
+    margin-top: 20px;
+    border: none;
+    background: transparent;
+    text-decoration: underline;
+    font-family: $font1;
+}
+/////////////////////////////////////
+
+//++ NAVIGATION ++//
+.navbar {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: 40px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: $color8;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: $color1;
+    letter-spacing: 2px;
+}
+
+.logo {
+    width: 100px;
+}
+.footer {
+    position:fixed;
+    width: 100%;
+    background-color: $color8;
+    height: 10%;
+    bottom: 0;
+    margin-top: 10em;
+    font-family: $font1;
+   
+}
+
+.footer a {
+    color: $color1;
+}
+
+.footer p {
+  text-align: center;
+  padding: 20px;
+  letter-spacing: 2px;
+
+}
+
+//++ DISCOVER ++//
+.discovers {
+   display: flex;
+   justify-content: space-around;
+   flex-direction: row;
+   flex-wrap: wrap;
+    align-content: center;
+}
+
+.discover p{
+    font-size: 12px;
+}
+
+.discover img{
+    width: 220px;
+}
+
+.searchDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.searchDiv input {
+   text-align: center;
+}
