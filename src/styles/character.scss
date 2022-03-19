@@ -1,0 +1,34 @@
+@import "../variables/variables.scss";
+
+.charactercard {
+    @include postStyle();
+    width: 30%;
+    font-family: $font2;
+    text-align: center;
+    img {
+        width: 80%;
+        margin: 10px;
+        border: 1px solid $color1;
+        padding: 1px;
+    }
+    span {
+        color: $color3;
+    }
+    
+    .comments {
+        border: 1px solid $color2;
+        margin: 10px;
+        padding: 10px;
+        width: 80%;
+        overflow: scroll;
+    }
+    .comment {
+        border: 1px solid $color2;
+        margin: 5px;
+    }
+    .forms {
+        display: flex;
+        @include inputStyle(10px);
+        width: 5px;
+    }
+}
