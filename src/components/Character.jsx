@@ -2,6 +2,8 @@ import "../styles/character.css";
 import { FaHeart, FaHeartBroken } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
+import { GrEdit } from 'react-icons/gr';
+import { BiEraser, BiCommentDetail } from 'react-icons/bi';
 
 const Character = (props) => {
   const [edit, setEdit] = useState(false);
@@ -184,25 +186,23 @@ const Character = (props) => {
         }
       />
 
-      <h3>Played by {props.character.actor}</h3>
-      <h4>Description: {props.character.description}</h4>
-
       <h3>Votes: {totalVotes}</h3>
       <div className="comments">
         <label htmlFor={"add-new-character-comment" + props.character.id}>
           Add New Comment
         </label>
         <input
+        className="forms"
           id={"add-new-character-comment" + props.character.id}
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           placeholder="...share a comment"
         />
-        <button onClick={handleCreateNewComment}>Add</button>
+        <button className="btn" onClick={handleCreateNewComment}><BiCommentDetail /></button>
         <h3>Comments:</h3>
 
         {props.character.comments.map((comment) => (
-          <div>
+          <div> 
             <div
               key={props.character.id + "-char-comment-" + comment.id}
               className="comment"
@@ -217,13 +217,10 @@ const Character = (props) => {
               )}
           </div>
         ))}
-        <input className="forms" placeholder="...share a comment"></input>
       </div>
-      <input type="checkbox" name="like" id="like" />
-      <br />
       {props.isCreator && (
-        <button onClick={() => setEdit(!edit)}>
-          {!edit ? "Edit Character Info" : "Cancel"}
+        <button className="btn" onClick={() => setEdit(!edit)}>
+          {!edit ? <GrEdit /> : "Cancel"}
         </button>
       )}
       {edit && (
@@ -269,7 +266,7 @@ const Character = (props) => {
         </div>
       )}
       <br />
-      <button onClick={handleDelete}>Delete</button>
+      <button className="btn" onClick={handleDelete}><BiEraser /></button>
     </div>
   );
 };

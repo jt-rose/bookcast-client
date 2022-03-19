@@ -108,9 +108,6 @@ const Discover = (props) => {
                 <h4>{discover.source_name}</h4>
                 <img src={discover.source_image_url}></img>
                 <h5>Description: {discover.description}</h5>
-                <button onClick={handleDelete} value={discover.id}>
-                  X
-                </button>
               </div>
             );
           })}

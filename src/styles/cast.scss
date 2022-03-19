@@ -17,7 +17,15 @@
         color: $color3
     }
 }
-
 .characterdiv {
     display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 0 auto;
+}
+.forms {
+    @include inputStyle(10px);
+    display: flex;
+    width: 40%;
+
 }
