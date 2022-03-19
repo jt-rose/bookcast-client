@@ -9,6 +9,7 @@ const Character = (props) => {
   const [actor, setActor] = useState(props.character.actor);
   const [description, setDescription] = useState(props.character.description);
   const [photoUrl, setPhotoUrl] = useState(props.character.photo_url);
+  const [newComment, setNewComment] = useState("");
 
   const totalVotes = props.character.votes
     .map((vote) => (vote.like ? 1 : -1))
@@ -56,6 +57,44 @@ const Character = (props) => {
           like,
           character: props.character.id,
         },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Token " + props.tokenData.token,
+          },
+        }
+      )
+      .then(() => props.getCasting())
+      .catch((err) => props.errorData.setError(err));
+  };
+
+  const handleCreateNewComment = () => {
+    axios
+      .post(
+        "https://bookcast-server.herokuapp.com/api/charactercomments/",
+        {
+          comment: newComment,
+          character: props.character.id,
+          user: props.userData.user,
+          user_id: props.userData.user.id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Token " + props.tokenData.token,
+          },
+        }
+      )
+      .then(() => props.getCasting())
+      .catch((err) => props.errorData.setError(err));
+  };
+
+  const handleDeleteComment = (commentId) => {
+    axios
+      .delete(
+        "https://bookcast-server.herokuapp.com/api/charactercomments/" +
+          commentId +
+          "/",
         {
           headers: {
             "Content-Type": "application/json",
@@ -143,14 +182,32 @@ const Character = (props) => {
       />
       <h3>Votes: {totalVotes}</h3>
       <div className="comments">
+        <label htmlFor={"add-new-character-comment" + props.character.id}>
+          Add New Comment
+        </label>
+        <input
+          id={"add-new-character-comment" + props.character.id}
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+          placeholder="...share a comment"
+        />
+        <button onClick={handleCreateNewComment}>Add</button>
         <h3>Comments:</h3>
 
         {props.character.comments.map((comment) => (
-          <div
-            key={props.character.id + "-char-comment-" + comment.id}
-            className="comment"
-          >
-            <span>{comment.user.username}:</span> {comment.comment}
+          <div>
+            <div
+              key={props.character.id + "-char-comment-" + comment.id}
+              className="comment"
+            >
+              <span>{comment.user.username}:</span> {comment.comment}
+            </div>
+            {props.userData.user &&
+              comment.user.id === props.userData.user.id && (
+                <button onClick={() => handleDeleteComment(comment.id)}>
+                  X
+                </button>
+              )}
           </div>
         ))}
         <input className="forms" placeholder="...share a comment"></input>
