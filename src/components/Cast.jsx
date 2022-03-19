@@ -30,12 +30,14 @@ const Cast = (props) => {
   }
 
   let pastVoteId = null;
+  let pastVoteLike = null;
   if (castDatas && props.userData.user) {
     const priorVote = castDatas.votes.find(
       (vote) => vote.user.id === props.userData.user.id
     );
     if (priorVote) {
       pastVoteId = priorVote.id;
+      pastVoteLike = priorVote.like;
     }
   }
 
@@ -195,6 +197,7 @@ const Cast = (props) => {
           <input placeholder="...share a comment"></input>
           <input type="checkbox" name="like" id="like" />
           <FaHeart
+            style={{ color: pastVoteLike ? "red" : "gray" }}
             onClick={
               pastVoteId
                 ? () => handleVoteUpdate(true)
@@ -202,6 +205,7 @@ const Cast = (props) => {
             }
           />{" "}
           <FaHeartBroken
+            style={{ color: pastVoteLike === false ? "blue" : "gray" }}
             onClick={
               pastVoteId
                 ? () => handleVoteUpdate(false)

@@ -15,12 +15,14 @@ const Character = (props) => {
     .reduce((x, y) => x + y, 0);
 
   let pastVoteId = null;
+  let pastVoteLike = null;
   if (props.userData && props.userData.user) {
     const priorVote = props.character.votes.find(
       (vote) => vote.user.id === props.userData.user.id
     );
     if (priorVote) {
       pastVoteId = priorVote.id;
+      pastVoteLike = priorVote.like;
     }
   }
 
@@ -126,11 +128,13 @@ const Character = (props) => {
         {props.character.description}
       </h4>
       <FaHeart
+        style={{ color: pastVoteLike ? "red" : "gray" }}
         onClick={
           pastVoteId ? () => handleVoteUpdate(true) : () => handleNewVote(true)
         }
       />{" "}
       <FaHeartBroken
+        style={{ color: pastVoteLike === false ? "blue" : "gray" }}
         onClick={
           pastVoteId
             ? () => handleVoteUpdate(false)
