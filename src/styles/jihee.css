@@ -1,0 +1,270 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+html {
+  background-color: #f8f7e9;
+}
+
+.btn {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  background-color: #fff;
+  border-width: 2px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
+          box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #8C4830;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
+  text-decoration: none;
+  -webkit-transition: all 235ms ease-in-out;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 200px;
+  border-bottom-right-radius: 200px 15px;
+  border-top-left-radius: 200px 15px;
+  border-top-right-radius: 15px 200px;
+}
+
+.btn:hover {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
+          box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
+  -webkit-transform: translate3d(0, 2px, 0);
+          transform: translate3d(0, 2px, 0);
+}
+
+.btn:focus {
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 4px -6px;
+          box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 4px -6px;
+}
+
+.login, .signup {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 10vh;
+  padding: 5px;
+  font-family: "Montserrat", sans-serif;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login, .signup label {
+  letter-spacing: 2px;
+}
+
+.signup input {
+  display: block;
+  font-size: 20px;
+  line-height: 40px;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 40px;
+  border: none;
+  border-bottom: 3.5px solid #000807;
+  min-width: 250px;
+  padding-left: 5px;
+  outline: none;
+  color: #000807;
+  background-color: #f8f7e9;
+  letter-spacing: 2px;
+}
+
+.signup input:focus {
+  border-bottom: 3.5px solid #8C4830;
+}
+
+.login input {
+  display: block;
+  font-size: 20px;
+  line-height: 40px;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 40px;
+  border: none;
+  border-bottom: 3.5px solid #000807;
+  min-width: 250px;
+  padding-left: 5px;
+  outline: none;
+  color: #000807;
+  background-color: #f8f7e9;
+  letter-spacing: 2px;
+}
+
+.login input:focus {
+  border-bottom: 3.5px solid #8C4830;
+}
+
+.signupInput {
+  margin-top: 20px;
+  width: 300px;
+  text-align: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.loginInput {
+  margin-top: 20px;
+  width: 300px;
+  text-align: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.auth {
+  margin-top: 20px;
+  border: none;
+  background: transparent;
+  text-decoration: underline;
+  font-family: "Montserrat", sans-serif;
+}
+
+.navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 40px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: #dba06c;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #000807;
+  letter-spacing: 2px;
+}
+
+.logo {
+  width: 100px;
+}
+
+.footer {
+  position: fixed;
+  width: 100%;
+  background-color: #dba06c;
+  height: 10%;
+  bottom: 0;
+  margin-top: 10em;
+  font-family: "Montserrat", sans-serif;
+}
+
+.footer a {
+  color: #000807;
+}
+
+.footer p {
+  text-align: center;
+  padding: 20px;
+  letter-spacing: 2px;
+}
+
+.discovers {
+  margin-top: 10vmin;
+  margin-left: 15vmin;
+  margin-right: 15vmin;
+  margin-bottom: 10vmin;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  text-align: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 50px;
+}
+
+.discover {
+  width: 280px;
+  list-style-type: none;
+  border: 0.5px solid #000807;
+}
+
+.dis-date {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.discover img {
+  width: 220px;
+}
+
+.searchDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.searchDiv input {
+  text-align: center;
+  width: 250px;
+  height: 25px;
+}
+
+.dis-desc {
+  margin: 20px;
+}
+
+.addForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 10vh;
+  padding: 5px;
+  font-family: "Montserrat", sans-serif;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.addForm input {
+  display: block;
+  font-size: 20px;
+  line-height: 40px;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 40px;
+  border: none;
+  border-bottom: 3.5px solid #000807;
+  min-width: 250px;
+  padding-left: 5px;
+  outline: none;
+  color: #000807;
+}
+
+.addForm input:focus {
+  border-bottom: 3.5px solid #8C4830;
+}
+/*# sourceMappingURL=jihee.css.map */

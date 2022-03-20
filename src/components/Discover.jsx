@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import "../styles/Datas.css";
+import "../styles/jihee.css";
 import Add from "./Add";
 
 const convertLikeToInt = (likeObject) => {
@@ -96,21 +96,18 @@ const Discover = (props) => {
           }}
         ></input>
       </div>
-      <div className="castings">
+      <div className="discovers">
         {discovers
           .filter((search) =>
             search.source_name.toLowerCase().includes(filter.toLowerCase())
           )
           .map((discover, index) => {
             return (
-              <div className="casting" key={`${discover.created}-${index}`}>
-                <h4>Date: {discover.created}</h4>
-                <h4>{discover.source_name}</h4>
+              <div className="discover" key={`${discover.created}-${index}`}>
+                <li className="dis-date">Date: {discover.created}</li>
+                <li>{discover.source_name}</li>
                 <img src={discover.source_image_url}></img>
-                <h5>Description: {discover.description}</h5>
-                <button onClick={handleDelete} value={discover.id}>
-                  X
-                </button>
+                <li className="dis-desc">{discover.description}</li>
               </div>
             );
           })}
@@ -119,4 +116,8 @@ const Discover = (props) => {
   );
 };
 
+
+
 export default Discover;
+
+

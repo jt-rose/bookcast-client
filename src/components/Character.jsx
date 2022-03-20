@@ -152,11 +152,15 @@ const Character = (props) => {
   };
 
   return (
+
     <div className="charactercard">
+
       <img
         src={props.character.photo_url}
         alt={props.character.actor + "-photo"}
       />
+
+
       <h1>{props.character.name}</h1>
       <h3>
         Played by <span>{props.character.actor}</span>
@@ -180,6 +184,10 @@ const Character = (props) => {
             : () => handleNewVote(false)
         }
       />
+
+      <h3>Played by {props.character.actor}</h3>
+      <h4>Description: {props.character.description}</h4>
+
       <h3>Votes: {totalVotes}</h3>
       <div className="comments">
         <label htmlFor={"add-new-character-comment" + props.character.id}>

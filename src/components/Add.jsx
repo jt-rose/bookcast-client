@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import "../styles/home.css"
+// import "../styles/home.css"
+import "../styles/jihee.css"
 const Add = (props) => {
   let emptyCasting = {created: '', creator: '', source_name: '', source_image_url: '', description: '' }
   const [casting, setCasting] = useState(emptyCasting)
