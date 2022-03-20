@@ -4,7 +4,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import Character from "./Character";
 import "../styles/cast.css";
 import { FaHeart, FaHeartBroken } from "react-icons/fa";
+import { GrEdit } from 'react-icons/gr';
+import { BiEraser } from 'react-icons/bi';
+
 import AddCharacter from "./AddCharacter";
+
 
 const Cast = (props) => {
   const params = useParams();
@@ -190,16 +194,28 @@ const Cast = (props) => {
   } else {
     return (
       <>
-        <h1>Hi, this is cast id: {params.castid}</h1>
         <div className="mediadiv">
-          <div className="castinfo">
             <h2 className="title">{castDatas.source_name}</h2>
             <br />
             {isCreator && (
-              <button onClick={() => setEdit(!edit)}>
-                {!edit ? "Edit Casting Info" : "Cancel"}
+              <button className="btn" onClick={() => setEdit(!edit)}>
+                {!edit ? <GrEdit /> : "Cancel"}
               </button>
+              
             )}
+            {!willDelete && (
+          <button className="btn" onClick={() => setWillDelete(true)}><BiEraser /></button>
+        )}
+        {willDelete && (
+          <>
+            <p>
+              Are you sure you want to delete this casting? It will be gone for
+              good!
+            </p>
+            <button onClick={handleDelete}>Yes, delete</button>
+            <button onClick={() => setWillDelete(false)}>no thanks</button>
+          </>
+        )}
             {edit && (
               <div>
                 <label htmlFor="name">Name</label>
@@ -231,7 +247,6 @@ const Cast = (props) => {
             <h5>
               <span>Description:</span> {castDatas.description}
             </h5>
-          </div>
           <br />
           <FaHeart
             style={{ color: pastVoteLike ? "red" : "gray" }}
@@ -252,6 +267,7 @@ const Cast = (props) => {
           <h5>Casting Vote: {castingVotes}</h5>
           <label htmlFor="add-new-casting-comment">Add New Comment</label>
           <input
+            className="forms"
             id="add-new-casting-comment"
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
@@ -268,7 +284,7 @@ const Cast = (props) => {
                 {props.userData.user &&
                   comment.user.id === props.userData.user.id && (
                     <button onClick={() => handleDeleteComment(comment.id)}>
-                      X
+                      <BiEraser />
                     </button>
                   )}
               </div>
@@ -297,19 +313,7 @@ const Cast = (props) => {
           )}
         </div>
 
-        {!willDelete && (
-          <button onClick={() => setWillDelete(true)}>Delete Casting</button>
-        )}
-        {willDelete && (
-          <>
-            <p>
-              Are you sure you want to delete this casting? It will be gone for
-              good!
-            </p>
-            <button onClick={handleDelete}>Yes, delete</button>
-            <button onClick={() => setWillDelete(false)}>no thanks</button>
-          </>
-        )}
+        
       </>
     );
   }

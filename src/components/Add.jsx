@@ -19,11 +19,11 @@ const Add = (props) => {
     <div className = "addForm">
     <form onSubmit={handleSubmit}>
      
-     <label htmlFor="source_name">Film: </label>
+     <label htmlFor="source_name">Source: </label>
      <input className="forms" type="text" name="source_name" value={casting.source_name} onChange={handleChange} />
      <br />
      <br />
-     <label htmlFor="source_image_url">Image</label>
+     <label htmlFor="source_image_url">Image URL:</label>
      <input className="forms" type="text" name="source_image_url" value={casting.source_image_url} onChange={handleChange} />
      <br />
      <br />
