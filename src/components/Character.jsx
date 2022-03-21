@@ -13,6 +13,7 @@ const Character = (props) => {
   const [description, setDescription] = useState(props.character.description);
   const [photoUrl, setPhotoUrl] = useState(props.character.photo_url);
   const [newComment, setNewComment] = useState("");
+  const [openComments, setOpenComments] = useState(false);
 
   const totalVotes = props.character.votes
     .map((vote) => (vote.like ? 1 : -1))
@@ -88,7 +89,10 @@ const Character = (props) => {
           },
         }
       )
-      .then(() => props.getCasting())
+      .then(() => {
+        props.getCasting();
+        setOpenComments(true);
+      })
       .catch((err) => props.errorData.setError(err));
   };
 
@@ -266,8 +270,10 @@ const Character = (props) => {
             </button>
           </div>
           <div className="overflow">
-            <details>
-              <summary>Comments</summary>
+            <details open={openComments}>
+              <summary onClick={() => setOpenComments(!openComments)}>
+                Comments
+              </summary>
               {props.character.comments.map((comment) => (
                 <div className="character-comment">
                   <div
