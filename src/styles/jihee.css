@@ -257,6 +257,12 @@ html {
   letter-spacing: 2px;
 }
 
+.navbar a:hover {
+  color: #000807;
+  letter-spacing: 2px;
+  text-decoration: underline;
+}
+
 .logo {
   width: 100px;
 }

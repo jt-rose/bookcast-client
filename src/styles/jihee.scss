@@ -96,6 +96,14 @@ html {
     letter-spacing: 2px;
 }
 
+.navbar a:hover {
+    // text-decoration: none;
+    color: $color1;
+    letter-spacing: 2px;
+    text-decoration: underline;
+}
+
+
 .logo {
     width: 100px;
 }
