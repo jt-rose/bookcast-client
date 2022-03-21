@@ -32,6 +32,7 @@ const Add = (props) => {
      <input className="forms" type="text" name="description" placeholder="Description" value={casting.description} onChange={handleChange} />
    
      <button className="btn" type="submit" >submit</button>
+
     </form>
     </div>
     </>

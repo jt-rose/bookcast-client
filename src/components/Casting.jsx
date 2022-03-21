@@ -43,6 +43,7 @@ const Casting = (props) => {
 
   return (
     <>
+
         <div className="page-title">
         <p>CASTING</p>
         </div>
@@ -81,6 +82,7 @@ const Casting = (props) => {
               </div>
             );
           })}
+
       </div>
     </>
   );

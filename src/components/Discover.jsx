@@ -116,7 +116,9 @@ const Discover = (props) => {
                 <li className="dis-date">Date: {discover.created}</li>
                 <li>{discover.source_name}</li>
                 <img src={discover.source_image_url}></img>
+
                 <li className="dis-desc">{discover.description}</li>
+
               </div>
             );
           })}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Edit from "./Edit";
 import axios from "axios";
 import Add from "./Add";
@@ -9,6 +10,8 @@ import "../styles/jihee.css";
 
 const Home = (props) => {
   let [castings, setCastings] = useState([]);
+  let [filter, setFilter] = useState("");
+  let navigate = useNavigate();
 
 
 
@@ -96,5 +99,6 @@ const Home = (props) => {
     </>
   );
 };
+
 
 export default Home;

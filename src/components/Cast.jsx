@@ -5,7 +5,11 @@ import Character from "./Character";
 // import "../styles/cast.css";
 import "../styles/jihee.css";
 import { FaHeart, FaHeartBroken } from "react-icons/fa";
+import { GrEdit } from 'react-icons/gr';
+import { BiEraser } from 'react-icons/bi';
+
 import AddCharacter from "./AddCharacter";
+
 
 const Cast = (props) => {
   const params = useParams();
@@ -191,12 +195,14 @@ const Cast = (props) => {
   } else {
     return (
       <>
+
         {/* <h1>Hi, this is cast id: {params.castid}</h1> */}
         <div className="mediadiv">
           <div className="castinfo">
             
             <h2 className="title">{castDatas.source_name}</h2>
      
+
             <img src={castDatas.source_image_url}></img>
             <div className="delete-cast">
       
@@ -235,6 +241,7 @@ const Cast = (props) => {
         </div>
       )}
 
+
 {!willDelete && (
     <button className = "subbtn" onClick={() => setWillDelete(true)}>Delete Casting</button>
   )}
@@ -255,6 +262,7 @@ const Cast = (props) => {
             </p>
           </div>
           <div className="like">
+
           <FaHeart
             style={{ color: pastVoteLike ? "red" : "gray" }}
             onClick={
@@ -277,6 +285,7 @@ const Cast = (props) => {
           <div className="casting-comment">
           <label htmlFor="add-new-casting-comment"></label>
           <input
+            className="forms"
             id="add-new-casting-comment"
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
@@ -295,8 +304,10 @@ const Cast = (props) => {
                 </p>
                 {props.userData.user &&
                   comment.user.id === props.userData.user.id && (
+
                     <button className = "subbtn" onClick={() => handleDeleteComment(comment.id)}>
                       X
+
                     </button>
                   )}
               </div>
@@ -328,8 +339,10 @@ const Cast = (props) => {
                 isCreator={isCreator}
               />
             ))}
+
             </div>
      
+
         
       </>
     );
