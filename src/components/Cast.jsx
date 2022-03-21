@@ -19,6 +19,7 @@ const Cast = (props) => {
   const [description, setDescription] = useState("");
   const [willDelete, setWillDelete] = useState(false);
   const [newComment, setNewComment] = useState("");
+  const [openComments, setOpenComments] = useState(false);
 
   let navigate = useNavigate();
 
@@ -120,6 +121,7 @@ const Cast = (props) => {
       )
       .then(() => {
         setNewComment("");
+        setOpenComments(true);
         getCasting();
       })
       .catch((err) => props.errorData.setError(err));
@@ -299,8 +301,10 @@ const Cast = (props) => {
             </button>
           </div>
           <div className="commented">
-            <details>
-              <summary>Casting Comments</summary>
+            <details open={openComments}>
+              <summary onClick={() => setOpenComments(!openComments)}>
+                Casting Comments
+              </summary>
               {castDatas &&
                 castDatas.comments.map((comment) => (
                   <div className="commented">
