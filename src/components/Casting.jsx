@@ -12,9 +12,14 @@ const Casting = (props) => {
 
   let navigate = useNavigate();
 
-  const getCastings = () => {
+  const getMyCastings = () => {
     axios
-      .get("https://bookcast-server.herokuapp.com/api/castings/")
+      .get("https://bookcast-server.herokuapp.com/api/mycastings", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Token " + props.tokenData.token,
+        },
+      })
       .then(
         (response) => setCastings(response.data),
         (err) => console.error(err)
@@ -38,15 +43,14 @@ const Casting = (props) => {
   };
 
   useEffect(() => {
-    getCastings();
+    getMyCastings();
   }, []);
 
   return (
     <>
-
-        <div className="page-title">
+      <div className="page-title">
         <p>CASTING</p>
-        </div>
+      </div>
       <div className="searchDiv">
         <input
           className="searchInput"
@@ -82,7 +86,6 @@ const Casting = (props) => {
               </div>
             );
           })}
-
       </div>
     </>
   );
