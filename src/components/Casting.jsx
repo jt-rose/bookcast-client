@@ -3,7 +3,8 @@ import Edit from "./Edit";
 import axios from "axios";
 import Add from "./Add";
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/Datas.css";
+// import "../styles/Datas.css";
+import "../styles/jihee.css";
 
 const Casting = (props) => {
   let [castings, setCastings] = useState([]);
@@ -42,6 +43,9 @@ const Casting = (props) => {
 
   return (
     <>
+        <div className="page-title">
+        <p>CASTING</p>
+        </div>
       <div className="searchDiv">
         <input
           className="searchInput"
@@ -70,10 +74,10 @@ const Casting = (props) => {
                   navigate("/cast/" + casting.id);
                 }}
               >
-                <h4>Date: {casting.created}</h4>
+                <p className="date">{casting.created}</p>
                 <h4>{casting.source_name}</h4>
                 <img src={casting.source_image_url}></img>
-                <h5>Description: {casting.description}</h5>
+                <p className="desc"> {casting.description}</p>
               </div>
             );
           })}

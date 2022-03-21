@@ -1,4 +1,5 @@
-import "../styles/character.css";
+// import "../styles/character.css";
+import "../styles/jihee.css";
 import { FaHeart, FaHeartBroken } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
@@ -152,26 +153,24 @@ const Character = (props) => {
   };
 
   return (
-
+    <div className="characters">
     <div className="charactercard">
-
       <img
         src={props.character.photo_url}
         alt={props.character.actor + "-photo"}
       />
-
-
-      <h1>{props.character.name}</h1>
+  
+      <h2>{props.character.name}</h2>
       <h3>
         Played by <span>{props.character.actor}</span>
       </h3>
-      <br />
-      <h4>
+      <p>
         <span>Description: </span>
         {props.character.description}
-      </h4>
+      </p>
+      <div className="like">
       <FaHeart
-        style={{ color: pastVoteLike ? "red" : "gray" }}
+        style={{ color: pastVoteLike ? "red" : "gray"}}
         onClick={
           pastVoteId ? () => handleVoteUpdate(true) : () => handleNewVote(true)
         }
@@ -184,14 +183,64 @@ const Character = (props) => {
             : () => handleNewVote(false)
         }
       />
+      
+    </div>
+    <h5>Votes: {totalVotes}</h5>
+    <div className="charactercard-edit">
+      {props.isCreator && (
+        <button className = "subbtn" onClick={() => setEdit(!edit)}>
+          {!edit ? "Edit Character Info" : "Cancel"}
+        </button>
+      )}
+      {edit && (
+        <div className="charactercard-edit-form">
+          <label htmlFor={"edit-character-name-" + props.character.id}>
+          </label>
+          <input
+            placeholder="Name"
+            type="text"
+            id={"edit-character-name-" + props.character.id}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
 
-      <h3>Played by {props.character.actor}</h3>
-      <h4>Description: {props.character.description}</h4>
+          <label htmlFor={"edit-character-actor-" + props.character.id}>
+          </label>
+          <input
+            placeholder="Actor"
+            type="text"
+            id={"edit-character-actor-" + props.character.id}
+            value={actor}
+            onChange={(e) => setActor(e.target.value)}
+          />
 
-      <h3>Votes: {totalVotes}</h3>
+          <label htmlFor={"edit-character-description-" + props.character.id}>
+          </label>
+          <textarea
+            rows="4" cols="32"
+            placeholder="Description"
+            id={"edit-character-description-" + props.character.id}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <label htmlFor={"edit-character-image-url-" + props.character.id}>
+          </label>
+          <input
+            placeholder="Image_url"
+            type="text"
+            id={"edit-character-image-url-" + props.character.id}
+            value={photoUrl}
+            onChange={(e) => setPhotoUrl(e.target.value)}
+          />
+
+          <button className = "subbtn" onClick={handleUpdate}>Update Character Info</button>
+          
+        </div>
+      )}
+      <button className = "subbtn" onClick={handleDelete}>Delete</button>
+
       <div className="comments">
         <label htmlFor={"add-new-character-comment" + props.character.id}>
-          Add New Comment
         </label>
         <input
           id={"add-new-character-comment" + props.character.id}
@@ -199,11 +248,16 @@ const Character = (props) => {
           onChange={(e) => setNewComment(e.target.value)}
           placeholder="...share a comment"
         />
-        <button onClick={handleCreateNewComment}>Add</button>
-        <h3>Comments:</h3>
+        <button className = "subbtn" onClick={handleCreateNewComment}>Add</button>
 
+
+      </div>
+      <div className="overflow">
+
+      <details>
+            <summary>Comments</summary>
         {props.character.comments.map((comment) => (
-          <div>
+          <div className="character-comment">
             <div
               key={props.character.id + "-char-comment-" + comment.id}
               className="comment"
@@ -212,65 +266,21 @@ const Character = (props) => {
             </div>
             {props.userData.user &&
               comment.user.id === props.userData.user.id && (
-                <button onClick={() => handleDeleteComment(comment.id)}>
+                <button className = "delete-btn" onClick={() => handleDeleteComment(comment.id)}>
                   X
                 </button>
               )}
           </div>
         ))}
-        <input className="forms" placeholder="...share a comment"></input>
+          </details>
+          </div>
+
+    </div>
+
       </div>
-      <input type="checkbox" name="like" id="like" />
-      <br />
-      {props.isCreator && (
-        <button onClick={() => setEdit(!edit)}>
-          {!edit ? "Edit Character Info" : "Cancel"}
-        </button>
-      )}
-      {edit && (
-        <div>
-          <label htmlFor={"edit-character-name-" + props.character.id}>
-            Name
-          </label>
-          <input
-            type="text"
-            id={"edit-character-name-" + props.character.id}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+      {/* <h3>Played by {props.character.actor}</h3>
+      <h4>Description: {props.character.description}</h4> */}
 
-          <label htmlFor={"edit-character-actor-" + props.character.id}>
-            Actor
-          </label>
-          <input
-            type="text"
-            id={"edit-character-actor-" + props.character.id}
-            value={actor}
-            onChange={(e) => setActor(e.target.value)}
-          />
-
-          <label htmlFor={"edit-character-description-" + props.character.id}>
-            Description
-          </label>
-          <textarea
-            id={"edit-character-description-" + props.character.id}
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <label htmlFor={"edit-character-image-url-" + props.character.id}>
-            Image URL
-          </label>
-          <input
-            type="text"
-            id={"edit-character-image-url-" + props.character.id}
-            value={photoUrl}
-            onChange={(e) => setPhotoUrl(e.target.value)}
-          />
-          <button onClick={handleUpdate}>Update Character Info</button>
-        </div>
-      )}
-      <br />
-      <button onClick={handleDelete}>Delete</button>
     </div>
   );
 };

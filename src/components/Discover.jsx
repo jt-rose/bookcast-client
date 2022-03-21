@@ -83,8 +83,12 @@ const Discover = (props) => {
 
   return (
     <>
-      <h1>discover</h1>
+         <div className="page-title">
+        <p>DISCOVER</p>
+        </div>
       <div className="searchDiv">
+
+
         <input
           className="searchInput"
           type="text"

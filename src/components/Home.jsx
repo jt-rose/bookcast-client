@@ -3,12 +3,14 @@ import Edit from "./Edit";
 import axios from "axios";
 import Add from "./Add";
 // import "../styles/Datas.css";
-// import "../styles/home.css";
+import "../styles/jihee.css";
 
 // Home and Castings are currently the same - update later
 
 const Home = (props) => {
   let [castings, setCastings] = useState([]);
+
+
 
   const getCastings = () => {
     axios
@@ -68,43 +70,29 @@ const Home = (props) => {
         getCastings();
       });
   };
-
   useEffect(() => {
     getCastings();
   }, []);
 
   return (
     <>
-      <h1>Welcome to BookCast!</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
-         eligendi obcaecati. Debitis libero ab ea eaque repellendus, 
-        pariatur magnam eveniet voluptatibus quo nostrum. Aliquam modi
-       ratione corporis? Possimus, impedit quis!</p>
-       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
-         eligendi obcaecati. Debitis libero ab ea eaque repellendus, 
-        pariatur magnam eveniet voluptatibus quo nostrum. Aliquam modi
-       ratione corporis? Possimus, impedit quis!</p>
-       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae,
-         eligendi obcaecati. Debitis libero ab ea eaque repellendus, 
-        pariatur magnam eveniet voluptatibus quo nostrum. Aliquam modi
-       ratione corporis? Possimus, impedit quis!</p>
-      {/* <div className="castings">
+       <div className="home-title">
+        <h1>Book Cast</h1>
+        <p>Cast your favorite stories</p>
+        </div>
+        <div>
+          
+        </div>
+      <div className="border">
+      <div className="home-imgs">
 
         {castings.map((casting, index) => {
-          return (
-            <div className="casting" key={casting.id + index}>
-              <h4><span>Date:</span> {casting.created}</h4>
-              <h1>{casting.source_name}</h1>
-              <img src={casting.source_image_url}></img>
-              <h5><span>Description:</span> {casting.description}</h5>
-              <Edit handleUpdate={handleUpdate} id={casting.id} />
-              <button className="btn" onClick={handleDelete} value={casting.id}>
-                X
-              </button>
-            </div>
+          return ( 
+            <img src={casting.source_image_url}></img>
           );
         })}
-      </div> */}
+      </div>
+      </div>
     </>
   );
 };

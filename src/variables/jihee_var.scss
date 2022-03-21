@@ -32,12 +32,12 @@ $font1: 'Montserrat', sans-serif;
 @mixin buttonStyle() {
     align-self: center;
     background-color: #fff;
-    // background-image: none;
-    // background-position: 0 90%;
-    // background-repeat: repeat no-repeat;
-    // background-size: 4px 3px;
-    // border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-    // border-style: solid;
+    background-image: none;
+    background-position: 0 90%;
+    background-repeat: repeat no-repeat;
+    background-size: 4px 3px;
+    border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+    border-style: solid;
     border-width: 2px;
     box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
     box-sizing: border-box;
@@ -46,15 +46,15 @@ $font1: 'Montserrat', sans-serif;
     display: inline-block;
     font-family: $font1;
     font-size: 1rem;
-    line-height: 23px;
+    line-height: 16px;
     outline: none;
-    padding: .75rem;
+    padding: .7rem;
     text-decoration: none;
     transition: all 235ms ease-in-out;
-    border-bottom-left-radius: 15px 200px;
-    border-bottom-right-radius: 200px 15px;
-    border-top-left-radius: 200px 15px;
-    border-top-right-radius: 15px 200px;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
 
     &:hover {
         box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
@@ -64,6 +64,82 @@ $font1: 'Montserrat', sans-serif;
         box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
     }
 }
+
+
+@mixin subBtnStyle() {
+    align-self: center;
+    background-color: #fff;
+    background-image: none;
+    background-position: 0 90%;
+    background-repeat: repeat no-repeat;
+    background-size: 4px 3px;
+    border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+    box-sizing: border-box;
+    color: $color9;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $font1;
+    font-weight: 500;
+    font-size: .75rem;
+    line-height: 12px;
+    outline: none;
+    padding: .5rem;
+    text-decoration: none;
+    transition: all 235ms ease-in-out;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+
+    &:hover {
+        box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+        transform: translate3d(0, 2px, 0);
+    }
+    &:focus {
+        box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+    }
+}
+
+@mixin deleteStyle() {
+    align-self: center;
+    background-color: #fff;
+    background-image: none;
+    background-position: 0 90%;
+    background-repeat: repeat no-repeat;
+    background-size: 4px 3px;
+    border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+    box-sizing: border-box;
+    color: $color9;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $font1;
+    font-weight: 600;
+    font-size: .60rem;
+    line-height: 12px;
+    outline: none;
+    padding: .25rem;
+    text-decoration: none;
+    transition: all 235ms ease-in-out;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+
+    &:hover {
+        box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+        transform: translate3d(0, 2px, 0);
+    }
+    &:focus {
+        box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+    }
+}
+
 
 @mixin inputStyle($fontSize) {
   display: block;
@@ -85,6 +161,29 @@ $font1: 'Montserrat', sans-serif;
 
    
 }
+
+@mixin characterInputStyle($fontSize) {
+    display: block;
+  //   width: 100%;
+    font-size: $fontSize;
+    line-height: $fontSize * 2;
+    font-family: $font1;
+    margin-bottom: $fontSize * 2;
+    border: none;
+    border-bottom: 3.5px solid $color1;
+    min-width: 185px;
+    padding-left: 5px;
+    outline: none;
+    color: $color1; 
+    
+      &:focus {
+      border-bottom: 3.5px solid $color9;
+      }
+  
+     
+  }
+
+
 
 @mixin titleStyle($size, $color) {
     text-shadow: #474747 3px 5px 2px;
