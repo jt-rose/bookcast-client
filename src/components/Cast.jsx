@@ -53,7 +53,6 @@ const Cast = (props) => {
         "https://bookcast-server.herokuapp.com/api/castings/" + params.castid
       )
       .then((response) => {
-        console.log(response);
         setCastDatas(response.data);
         setName(response.data.source_name);
         setImage_url(response.data.source_image_url);
@@ -199,7 +198,6 @@ const Cast = (props) => {
   } else {
     return (
       <>
-        {/* <h1>Hi, this is cast id: {params.castid}</h1> */}
         <div className="mediadiv">
           <div className="castinfo">
             <h2 className="title">{castDatas.source_name}</h2>

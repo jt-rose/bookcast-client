@@ -32,7 +32,6 @@ const Discover = () => {
           b.votes.reduce((a, b) => a + convertLikeToInt(b), 0)
       )
       .reverse();
-    console.log(castings);
   } else {
     castings.sort((a, b) => new Date(a.created) - new Date(b.created));
   }

@@ -22,7 +22,6 @@ const Register = (props) => {
         email,
       })
       .then((response) => {
-        console.log(response);
         props.tokenData.setToken(response.data.token);
         props.userData.setUser(response.data.user);
         props.errorData.setError(false);

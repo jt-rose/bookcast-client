@@ -35,7 +35,6 @@ const Casting = (props) => {
         },
       })
       .then((response) => {
-        console.log(response);
         navigate("/cast/" + response.data.id);
       });
   };
