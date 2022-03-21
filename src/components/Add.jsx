@@ -17,22 +17,21 @@ const Add = (props) => {
 
   return (
     <>
-    <div className = "addForm">
-    <form onSubmit={handleSubmit}>
+    <div className = "addDiv">
+      
+    <form className='addForm' onSubmit={handleSubmit}>
+
+     <label htmlFor="source_name"></label>
+     <input className="forms" type="text" name="source_name" placeholder="Film"
+      value={casting.source_name} onChange={handleChange} />
      
-     <label htmlFor="source_name">Film: </label>
-     <input className="forms" type="text" name="source_name" value={casting.source_name} onChange={handleChange} />
-     <br />
-     <br />
-     <label htmlFor="source_image_url">Image</label>
-     <input className="forms" type="text" name="source_image_url" value={casting.source_image_url} onChange={handleChange} />
-     <br />
-     <br />
-     <label htmlFor="description">Description: </label>
-     <input className="forms" type="text" name="description" value={casting.description} onChange={handleChange} />
-     <br />
-     <br />
-     <input className="btn" type="submit" />
+     <label htmlFor="source_image_url"></label>
+     <input className="forms" type="text" name="source_image_url" placeholder="Image_url" value={casting.source_image_url} onChange={handleChange} />
+     
+     <label htmlFor="description"></label>
+     <input className="forms" type="text" name="description" placeholder="Description" value={casting.description} onChange={handleChange} />
+   
+     <button className="btn" type="submit" >submit</button>
     </form>
     </div>
     </>

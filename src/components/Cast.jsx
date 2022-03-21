@@ -2,7 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Character from "./Character";
-import "../styles/cast.css";
+// import "../styles/cast.css";
+import "../styles/jihee.css";
 import { FaHeart, FaHeartBroken } from "react-icons/fa";
 import AddCharacter from "./AddCharacter";
 
@@ -190,49 +191,70 @@ const Cast = (props) => {
   } else {
     return (
       <>
-        <h1>Hi, this is cast id: {params.castid}</h1>
+        {/* <h1>Hi, this is cast id: {params.castid}</h1> */}
         <div className="mediadiv">
           <div className="castinfo">
+            
             <h2 className="title">{castDatas.source_name}</h2>
-            <br />
-            {isCreator && (
-              <button onClick={() => setEdit(!edit)}>
-                {!edit ? "Edit Casting Info" : "Cancel"}
-              </button>
-            )}
-            {edit && (
-              <div>
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <label htmlFor="name">Description</label>
-                <textarea
-                  id="description"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-                <label htmlFor="image-url">Image URL</label>
-                <input
-                  type="text"
-                  id="image-url"
-                  value={image_url}
-                  onChange={(e) => setImage_url(e.target.value)}
-                />
-                <button onClick={handleUpdate}>Update Casting Info</button>
-              </div>
-            )}
+     
             <img src={castDatas.source_image_url}></img>
-            <br />
+            <div className="delete-cast">
+      
+        
+      {isCreator && (
+        <button className = "subbtn" onClick={() => setEdit(!edit)}>
+          {!edit ? "Edit Casting Info" : "Cancel"}
+        </button>
+      )}
+      {edit && (
+        <div className="edit-casting">
+          <label htmlFor="name"></label>
+          <input
+            placeholder="Name"
+            type="text"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <label htmlFor="name"></label>
+          <textarea
+            placeholder="Description"
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <label htmlFor="image-url">Image URL</label>
+          <input
+            type="text"
+            id="image-url"
+            value={image_url}
+            onChange={(e) => setImage_url(e.target.value)}
+          />
+          <button className = "subbtn" onClick={handleUpdate}>Update Casting Info</button>
+          
+        </div>
+      )}
 
-            <h5>
-              <span>Description:</span> {castDatas.description}
-            </h5>
+{!willDelete && (
+    <button className = "subbtn" onClick={() => setWillDelete(true)}>Delete Casting</button>
+  )}
+  {willDelete && (
+    <>
+      <p>
+        Are you sure you want to delete this casting? It will be gone for
+        good!
+      </p>
+      <button className = "subbtn" onClick={handleDelete}>Yes, delete</button>
+      <button className = "subbtn" onClick={() => setWillDelete(false)}>no thanks</button>
+    </>
+  )}
+ </div>
+
+            <p>
+            {castDatas.description}
+            </p>
           </div>
-          <br />
+          <div className="like">
           <FaHeart
             style={{ color: pastVoteLike ? "red" : "gray" }}
             onClick={
@@ -249,31 +271,50 @@ const Cast = (props) => {
                 : () => handleNewVote(false)
             }
           />
-          <h5>Casting Vote: {castingVotes}</h5>
-          <label htmlFor="add-new-casting-comment">Add New Comment</label>
+             </div>
+          <h5 className="vote-count">Casting Vote: {castingVotes}</h5>
+       
+          <div className="casting-comment">
+          <label htmlFor="add-new-casting-comment"></label>
           <input
             id="add-new-casting-comment"
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
             placeholder="...share a comment"
           />
-          <button onClick={handleCreateNewComment}>Add</button>
-          <h5>Casting Comments:</h5>
+          <button className = "subbtn" onClick={handleCreateNewComment}>Add</button>
+          </div>
+          <div className="commented">
+          <details>
+            <summary>Casting Comments</summary>
           {castDatas &&
             castDatas.comments.map((comment) => (
-              <div>
+              <div className="commented">
                 <p key={"comment-" + comment.id}>
                   {comment.user.username}: {comment.comment}
                 </p>
                 {props.userData.user &&
                   comment.user.id === props.userData.user.id && (
-                    <button onClick={() => handleDeleteComment(comment.id)}>
+                    <button className = "subbtn" onClick={() => handleDeleteComment(comment.id)}>
                       X
                     </button>
                   )}
               </div>
             ))}
+              </details>
+
         </div>
+        </div>
+        <div className="add-character">
+          {isCreator && (
+            <AddCharacter
+              tokenData={props.tokenData}
+              errorData={props.errorData}
+              getCasting={getCasting}
+              castingId={castDatas.id}
+            />
+          )}
+          </div>
         <div className="characterdiv">
           {castDatas &&
             castDatas.characters.map((char) => (
@@ -287,29 +328,9 @@ const Cast = (props) => {
                 isCreator={isCreator}
               />
             ))}
-          {isCreator && (
-            <AddCharacter
-              tokenData={props.tokenData}
-              errorData={props.errorData}
-              getCasting={getCasting}
-              castingId={castDatas.id}
-            />
-          )}
-        </div>
-
-        {!willDelete && (
-          <button onClick={() => setWillDelete(true)}>Delete Casting</button>
-        )}
-        {willDelete && (
-          <>
-            <p>
-              Are you sure you want to delete this casting? It will be gone for
-              good!
-            </p>
-            <button onClick={handleDelete}>Yes, delete</button>
-            <button onClick={() => setWillDelete(false)}>no thanks</button>
-          </>
-        )}
+            </div>
+     
+        
       </>
     );
   }
