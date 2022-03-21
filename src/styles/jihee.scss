@@ -1,0 +1,541 @@
+@import "../variables/jihee_var.scss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+    background-color: $color6;
+}
+//++ LOGIN & REGISTER PAGE ++//
+.btn{
+    @include buttonStyle();
+}
+
+.subbtn {
+    @include subBtnStyle(); 
+}
+
+.delete-btn {
+    @include deleteStyle(); 
+
+}
+
+.page-title {
+    text-align: center;
+    letter-spacing: 3px;
+    font-size: 2em;
+}
+
+.login, .signup {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10vh;
+    padding: 5px;
+    font-family: $font1;
+    align-items: center;
+}
+
+.login, .signup label {
+    letter-spacing: 2px;
+}
+
+.signup input {
+    @include inputStyle(25px);
+    background-color: $color6;
+    letter-spacing: 2px;
+}
+
+.login input {
+    @include inputStyle(25.5px);
+    background-color: $color6;
+    letter-spacing: 2px;
+}
+
+
+.signupInput {
+    margin-top: 20px;
+    width: 300px;
+    text-align: center;
+    align-self: center;
+}
+
+.loginInput {
+    margin-top: 20px;
+    width: 300px;
+    text-align: center;
+    align-self: center;
+}
+
+
+.auth {
+    // width: 300px;
+    margin-top: 20px;
+    border: none;
+    background: transparent;
+    text-decoration: underline;
+    font-family: $font1;
+}
+/////////////////////////////////////
+
+
+
+//++ NAVIGATION ++//
+.navbar {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap: 40px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: $color8;
+    z-index: 2;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: $color1;
+    letter-spacing: 2px;
+}
+
+.navbar a:hover {
+    // text-decoration: none;
+    color: $color1;
+    letter-spacing: 2px;
+    text-decoration: underline;
+}
+
+
+.logo {
+    width: 100px;
+}
+
+//++ FOOTER ++//
+// .footer {
+//     position:fixed;
+//     width: 100%;
+//     background-color: $color8;
+//     height: 10%;
+//     bottom: 0;
+//     margin-top: 10em;
+//     font-family: $font1;
+   
+// }
+
+// .footer a {
+//     color: $color1;
+// }
+
+// .footer p {
+//   text-align: center;
+//   padding: 20px;
+//   letter-spacing: 2px;
+
+// }
+
+//++ DISCOVER ++//
+.discovers {
+    margin-top: 10vmin;
+    margin-bottom: 10vmin;
+    margin-left: 15vmin;
+    margin-right: 15vmin;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: flex-start;
+    gap: 50px;
+}
+
+.discover {
+    padding-top: 2vh;
+    padding-left: 1vw;
+    width: 280px;
+    list-style-type: none;
+    position: relative;
+    background: $color6;
+    border-radius: 0% 0% 0% 0% / 0% 0% 0% 0% ;
+    box-shadow: 20px 20px rgba(0,0,0,.15);
+    transition: all .4s ease;
+}
+
+.discover:hover {
+    box-shadow: 10px 10px $color9;
+    
+  }
+
+.dis-desc {
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 1.3em;
+    overflow-y: scroll;
+    height: 40px;
+    margin: 10px;
+}
+
+.dis-desc::-webkit-scrollbar {
+    display: none;
+  }
+.dis-date {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.discover img{
+    width: 220px;
+}
+
+.searchDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.searchDiv input {
+    text-align: center;
+    width: 250px;
+    height: 25px;
+    border-bottom-left-radius: 15px 200px;
+    border-bottom-right-radius: 200px 15px;
+    border-top-left-radius: 200px 15px;
+    border-top-right-radius: 15px 200px;
+    outline: none;
+    font-family: $font1;
+    letter-spacing: 2px;
+}
+
+.dis-desc {
+    margin: 20px;
+}
+
+//++ Forms ++//
+.addForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 5vh;
+    padding: 5px;
+    font-family: $font1;
+    align-items: center;
+    letter-spacing: 2px;
+}
+
+.addForm input {
+    @include inputStyle(12px);
+    background-color: $color6;
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: .8em;
+}
+
+//++ CASTINGS ++//
+.castings {
+    margin-top: 10vmin;
+    margin-bottom: 10vmin;
+    margin-left: 15vmin;
+    margin-right: 15vmin;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: flex-start;
+    gap: 50px;
+}
+
+.casting {
+    width: 280px;
+    list-style-type: none;
+    position: relative;
+    background: $color6;
+    border-radius: 0% 0% 0% 0% / 0% 0% 0% 0% ;
+    box-shadow: 20px 20px rgba(0,0,0,.15);
+    transition: all .4s ease;
+}
+
+.casting:hover {
+    box-shadow: 10px 10px $color9;
+    
+  }
+
+
+.casting img {
+    width: 220px;
+}
+
+.date {
+    font-size: 12px;
+}
+
+.desc {
+    font-size: 14px;
+    letter-spacing: 1px;
+    line-height: 1.3em;
+    overflow-y: scroll;
+    height: 40px;
+    margin: 10px;
+}
+
+.desc::-webkit-scrollbar {
+    display: none;
+  }
+
+
+.mediadiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-bottom: 10vh;
+}
+
+.mediadiv img {
+    width: 400px;
+}
+
+.casting-comment{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.casting-comment input {
+    border-bottom-left-radius: 15px 200px;
+    border-bottom-right-radius: 200px 15px;
+    border-top-left-radius: 200px 15px;
+    border-top-right-radius: 15px 200px;
+    width: 300px;
+    outline: none;
+    height: 25px;
+    letter-spacing: 1px;
+}
+
+.casting-comment .btn {
+    position: relative;
+    bottom: 8px;
+    margin-left: 10px;
+}
+
+.castinfo {
+    align-self: center;
+    text-align: center;
+ 
+}
+
+.castinfo p {
+    width: 400px;
+    
+}
+.commented {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+}
+
+.commented button {
+    margin-left: 4px;
+}
+.like {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 20px;
+}
+
+.vote-count {
+    display: flex;
+    justify-content: center;
+}
+
+//++ CAST PAGE ++//
+.edit-casting {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+    gap: 5px;
+}
+
+.edit-casting input {
+    @include inputStyle(14px);
+    background-color: $color6;
+}
+
+textarea {
+    background-color: $color6;
+}
+
+.add-character {
+    margin-bottom: 5vh;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: flex-start;
+
+}
+
+.add-character input{
+    @include inputStyle(14px);
+    background-color: $color6;
+
+}
+
+.characterdiv {
+    display: flex;
+    justify-content:center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8vw;
+    margin-bottom: 10vh;
+}
+
+
+.characters {
+    // border-style: dotted dashed solid double;
+    // border-left: 5px solid $color9;
+    // border-bottom: 5px solid $color9;
+    position: relative;
+    background: $color6;
+    border-radius: 0% 0% 0% 0% / 0% 0% 0% 0% ;
+    box-shadow: 20px 20px rgba(0,0,0,.15);
+    transition: all .4s ease;
+
+    // width: 700px;
+    // margin-left: 18vw;
+    // margin-right: 16vw;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    // align-items: flex-start;
+    // gap: 5vw;
+    // box-sizing: border-box;    
+    // padding: 2vw;
+
+}
+
+.characters:hover {
+  box-shadow: 10px 10px $color9;
+  
+}
+
+.charactercard {
+
+    display: flex;
+    
+    flex-direction: column;
+    // width: 200px;
+    text-align: center;
+    // height: 70vh;
+    margin-top: 2vh;
+    margin-left: 2vh;
+    margin-right: 2vh;
+    align-self: center;
+}
+
+.charactercard input, textarea {
+    line-height: 20px;
+    margin-left: 6px;
+    margin-right: 6px;
+    font-family: $font1;
+}
+
+.charactercard p {
+    width: 300px;
+}
+.characters img {
+    width: 200px;
+    align-self: center;
+}
+
+.charactercard-edit {
+    // margin-top: 5vh;
+    // display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.charactercard-edit input {
+    @include inputStyle(14px);
+    background-color: $color6;
+    margin-top: 1vh;
+}
+
+
+.overflow {
+    overflow-y: auto;
+    height: 100px;
+    overflow-x: hidden;
+
+}
+
+.comments{
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center
+    // position: relative;
+    // right: 2px;
+}
+
+.comments input{
+    @include characterInputStyle(12px);
+    outline: none;
+    
+}
+
+.character-comment {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 30ch;
+    text-overflow: ellipsis;
+    text-align: center;
+    margin-bottom: 2vh;
+    font-size: 12px;
+}
+
+
+.border {
+    border: 20px $color9 solid;
+    background-color: $color8;
+    overflow-x: scroll;
+    // width: 100%;
+}
+
+.border::-webkit-scrollbar {
+    display: none;
+  }
+
+.home-imgs{
+    display: flex;
+}
+
+.home-imgs img{
+    width: 280px;
+}
+
+.home-title {
+    text-align: center;
+}
+@media only screen and (max-width: 600px) {
+    .navbar {
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        gap: 15px;
+        position: sticky;
+        top: 0;
+        width: 100%;
+        background-color: $color8;
+        z-index: 2;
+    }
+
+    .home-imgs img{
+        width: 180px;
+    }
+
+}

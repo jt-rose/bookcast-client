@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Edit from "./Edit";
 import axios from "axios";
 import Add from "./Add";
-import "../styles/Datas.css";
-import "../styles/home.css";
+// import "../styles/Datas.css";
+import "../styles/jihee.css";
 
 // Home and Castings are currently the same - update later
 
@@ -12,6 +12,8 @@ const Home = (props) => {
   let [castings, setCastings] = useState([]);
   let [filter, setFilter] = useState("");
   let navigate = useNavigate();
+
+
 
   const getCastings = () => {
     axios
@@ -71,38 +73,32 @@ const Home = (props) => {
         getCastings();
       });
   };
-
   useEffect(() => {
     getCastings();
   }, []);
 
   return (
     <>
-      <div className="castings">
-        {castings
-          .filter((search) =>
-            search.source_name.toLowerCase().includes(filter.toLowerCase())
-          )
-          .map((casting, index) => {
-            return (
-              <div
-                className="casting"
-                key={casting.id + index}
-                onClick={() => {
-                  navigate("/cast/" + casting.id);
-                }}
-              >
-                <h4><span>Date:</span> {casting.created}</h4>
-                <h1>{casting.source_name}</h1>
-                <img src={casting.source_image_url}></img>
-                <h5><span>Description:</span> {casting.description}</h5>
-              </div>
-            )
-          })
-        } 
+       <div className="home-title">
+        <h1>Book Cast</h1>
+        <p>Cast your favorite stories</p>
+        </div>
+        <div>
+          
+        </div>
+      <div className="border">
+      <div className="home-imgs">
+
+        {castings.map((casting, index) => {
+          return ( 
+            <img src={casting.source_image_url}></img>
+          );
+        })}
       </div>
-     </>
-  )
-}
+      </div>
+    </>
+  );
+};
+
 
 export default Home;

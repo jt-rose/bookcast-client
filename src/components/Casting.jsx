@@ -3,7 +3,8 @@ import Edit from "./Edit";
 import axios from "axios";
 import Add from "./Add";
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/Datas.css";
+// import "../styles/Datas.css";
+import "../styles/jihee.css";
 
 const Casting = (props) => {
   let [castings, setCastings] = useState([]);
@@ -42,8 +43,46 @@ const Casting = (props) => {
 
   return (
     <>
-  <div className="addForm">
+
+        <div className="page-title">
+        <p>CASTING</p>
+        </div>
+      <div className="searchDiv">
+        <input
+          className="searchInput"
+          type="text"
+          placeholder="search..."
+          value={filter}
+          onChange={(e) => {
+            e.preventDefault();
+            setFilter(e.target.value);
+          }}
+        ></input>
+      </div>
       {props.userData.user && <Add handleCreate={handleCreate} />}
+
+      <div className="castings">
+        {castings
+          .filter((search) =>
+            search.source_name.toLowerCase().includes(filter.toLowerCase())
+          )
+          .map((casting, index) => {
+            return (
+              <div
+                className="casting"
+                key={casting.id + index}
+                onClick={() => {
+                  navigate("/cast/" + casting.id);
+                }}
+              >
+                <p className="date">{casting.created}</p>
+                <h4>{casting.source_name}</h4>
+                <img src={casting.source_image_url}></img>
+                <p className="desc"> {casting.description}</p>
+              </div>
+            );
+          })}
+
       </div>
     </>
   );

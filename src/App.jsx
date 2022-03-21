@@ -3,11 +3,13 @@ import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Discover from "./components/Discover";
 import Casting from "./components/Casting";
 import Home from "./components/Home";
-import "./styles/NavBar.css";
-import "./styles/footer.css";
-import Auth from "./components/Auth";
+// import "./styles/NavBar.css";
+// import "./styles/footer.css";
+import "./styles/jihee.css";
+
+import Register from "./components/Register";
+import Login from "./components/Login";
 import Cast from "./components/Cast";
-import Footer from "./components/footer";
 import axios from "axios";
 
 const App = () => {
@@ -128,7 +130,17 @@ const App = () => {
         <Route
           path="/login"
           element={
-            <Auth
+            <Login
+              userData={{ user, setUser }}
+              tokenData={{ token, setToken }}
+              errorData={{ error, setError }}
+            />
+          }
+        />
+          <Route
+          path="/register"
+          element={
+            <Register
               userData={{ user, setUser }}
               tokenData={{ token, setToken }}
               errorData={{ error, setError }}
@@ -136,7 +148,6 @@ const App = () => {
           }
         />
       </Routes>
-      <Footer />
     </>
   );
 };

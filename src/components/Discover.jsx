@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import "../styles/Datas.css";
+import "../styles/jihee.css";
 import Add from "./Add";
+import { useNavigate } from "react-router-dom";
 
 const convertLikeToInt = (likeObject) => {
   switch (likeObject.like) {
@@ -19,6 +20,8 @@ const convertLikeToInt = (likeObject) => {
 const Discover = (props) => {
   let [discovers, setDiscovers] = useState([]);
   let [filter, setFilter] = useState("");
+
+  let navigate = useNavigate();
 
   let sortedCastings = discovers;
   sortedCastings
@@ -83,7 +86,9 @@ const Discover = (props) => {
 
   return (
     <>
-      <h1>discover</h1>
+      <div className="page-title">
+        <p>DISCOVER</p>
+      </div>
       <div className="searchDiv">
         <input
           className="searchInput"
@@ -96,18 +101,24 @@ const Discover = (props) => {
           }}
         ></input>
       </div>
-      <div className="castings">
+      <div className="discovers">
         {discovers
           .filter((search) =>
             search.source_name.toLowerCase().includes(filter.toLowerCase())
           )
           .map((discover, index) => {
             return (
-              <div className="casting" key={`${discover.created}-${index}`}>
-                <h4>Date: {discover.created}</h4>
-                <h4>{discover.source_name}</h4>
+              <div
+                className="discover"
+                key={`${discover.created}-${index}`}
+                onClick={() => navigate("/cast/" + discover.id)}
+              >
+                <li className="dis-date">Date: {discover.created}</li>
+                <li>{discover.source_name}</li>
                 <img src={discover.source_image_url}></img>
-                <h5>Description: {discover.description}</h5>
+
+                <li className="dis-desc">{discover.description}</li>
+
               </div>
             );
           })}
@@ -116,7 +127,4 @@ const Discover = (props) => {
   );
 };
 
-
 export default Discover;
-
-

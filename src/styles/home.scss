@@ -3,10 +3,10 @@
 .addForm {
     font-family: $font2;
 }
-.btn {
-    @include buttonStyle();
-    margin: 5px;
-}
+// .btn {
+//     // @include buttonStyle();
+//     // // margin: 5px;
+// }
 .forms {
     @include inputStyle(20px);
 }

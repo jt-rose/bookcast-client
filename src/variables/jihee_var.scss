@@ -1,0 +1,226 @@
+
+//colors
+$color1: #000807;
+$color2: #A2A3BB;
+$color3: #9395D3;
+$color4: #B3B7EE;
+$color5: #FBF9FF;
+
+
+$color6: #f8f7e9;
+$color7: #F2E3B6;
+$color8: #dba06c;
+$color9: #8C4830;
+
+
+//fonts
+$font1: 'Montserrat', sans-serif;
+
+//mixins
+@mixin linkStyle($text, $shadow) {
+    text-decoration: none;
+    color: $text;
+    text-shadow: 1px 2px 1px $shadow;
+    font-family: $font1;
+
+    &:hover {
+        color: $shadow;
+        text-shadow: 1px 2px 1px $text;
+    }
+}
+
+@mixin buttonStyle() {
+    align-self: center;
+    background-color: #fff;
+    background-image: none;
+    background-position: 0 90%;
+    background-repeat: repeat no-repeat;
+    background-size: 4px 3px;
+    border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+    box-sizing: border-box;
+    color: $color9;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $font1;
+    font-size: 1rem;
+    line-height: 16px;
+    outline: none;
+    padding: .7rem;
+    text-decoration: none;
+    transition: all 235ms ease-in-out;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+
+    &:hover {
+        box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+        transform: translate3d(0, 2px, 0);
+    }
+    &:focus {
+        box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+    }
+}
+
+
+@mixin subBtnStyle() {
+    align-self: center;
+    background-color: #fff;
+    background-image: none;
+    background-position: 0 90%;
+    background-repeat: repeat no-repeat;
+    background-size: 4px 3px;
+    border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+    box-sizing: border-box;
+    color: $color9;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $font1;
+    font-weight: 500;
+    font-size: .75rem;
+    line-height: 12px;
+    outline: none;
+    padding: .5rem;
+    text-decoration: none;
+    transition: all 235ms ease-in-out;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+
+    &:hover {
+        box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+        transform: translate3d(0, 2px, 0);
+    }
+    &:focus {
+        box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+    }
+}
+
+@mixin deleteStyle() {
+    align-self: center;
+    background-color: #fff;
+    background-image: none;
+    background-position: 0 90%;
+    background-repeat: repeat no-repeat;
+    background-size: 4px 3px;
+    border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+    border-style: solid;
+    border-width: 2px;
+    box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+    box-sizing: border-box;
+    color: $color9;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $font1;
+    font-weight: 600;
+    font-size: .60rem;
+    line-height: 12px;
+    outline: none;
+    padding: .25rem;
+    text-decoration: none;
+    transition: all 235ms ease-in-out;
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+
+    &:hover {
+        box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+        transform: translate3d(0, 2px, 0);
+    }
+    &:focus {
+        box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+    }
+}
+
+
+@mixin inputStyle($fontSize) {
+  display: block;
+//   width: 100%;
+  font-size: $fontSize;
+  line-height: $fontSize * 2;
+  font-family: $font1;
+  margin-bottom: $fontSize * 2;
+  border: none;
+  border-bottom: 3.5px solid $color1;
+  min-width: 250px;
+  padding-left: 5px;
+  outline: none;
+  color: $color1; 
+  
+    &:focus {
+    border-bottom: 3.5px solid $color9;
+    }
+
+   
+}
+
+@mixin characterInputStyle($fontSize) {
+    display: block;
+  //   width: 100%;
+    font-size: $fontSize;
+    line-height: $fontSize * 2;
+    font-family: $font1;
+    margin-bottom: $fontSize * 2;
+    border: none;
+    border-bottom: 3.5px solid $color1;
+    min-width: 185px;
+    padding-left: 5px;
+    outline: none;
+    color: $color1; 
+    
+      &:focus {
+      border-bottom: 3.5px solid $color9;
+      }
+  
+     
+  }
+
+
+
+@mixin titleStyle($size, $color) {
+    text-shadow: #474747 3px 5px 2px;
+    font-size: $size;
+    color: $color;
+    font-family: $font1;
+}
+
+@mixin postStyle() {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    border: 1px solid $color1;
+    box-shadow: $color3 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    margin: 20px;
+    h1 {
+        @include titleStyle(20px, $color1)
+    } 
+    h4 {
+        font-family: $font1;
+        font-size: 10px;
+        margin: 10px;
+    }
+    h5 {
+        font-size: 15px;
+
+    }
+
+    span {
+    color: $color3;
+    }
+
+    img {
+        width: 300px;
+        margin: 0 auto;
+        box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+    }
+}
+
