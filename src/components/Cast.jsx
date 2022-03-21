@@ -342,7 +342,7 @@ const Cast = (props) => {
           {castDatas &&
             castDatas.characters.map((char) => (
               <Character
-                key={"char" + char.id}
+                key={"char-" + char.id}
                 character={char}
                 userData={props.userData}
                 tokenData={props.tokenData}

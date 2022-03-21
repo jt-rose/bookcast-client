@@ -275,7 +275,10 @@ const Character = (props) => {
                 Comments
               </summary>
               {props.character.comments.map((comment) => (
-                <div className="character-comment">
+                <div
+                  className="character-comment"
+                  key={props.character.id + "-comment-" + comment.id}
+                >
                   <div
                     key={props.character.id + "-char-comment-" + comment.id}
                     className="comment"
