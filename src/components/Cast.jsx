@@ -5,11 +5,10 @@ import Character from "./Character";
 // import "../styles/cast.css";
 import "../styles/jihee.css";
 import { FaHeart, FaHeartBroken } from "react-icons/fa";
-import { GrEdit } from 'react-icons/gr';
-import { BiEraser } from 'react-icons/bi';
+import { GrEdit } from "react-icons/gr";
+import { BiEraser } from "react-icons/bi";
 
 import AddCharacter from "./AddCharacter";
-
 
 const Cast = (props) => {
   const params = useParams();
@@ -119,7 +118,10 @@ const Cast = (props) => {
           },
         }
       )
-      .then(() => getCasting())
+      .then(() => {
+        setNewComment("");
+        getCasting();
+      })
       .catch((err) => props.errorData.setError(err));
   };
 
@@ -195,126 +197,130 @@ const Cast = (props) => {
   } else {
     return (
       <>
-
         {/* <h1>Hi, this is cast id: {params.castid}</h1> */}
         <div className="mediadiv">
           <div className="castinfo">
-            
             <h2 className="title">{castDatas.source_name}</h2>
-     
 
             <img src={castDatas.source_image_url}></img>
             <div className="delete-cast">
-      
-        
-      {isCreator && (
-        <button className = "subbtn" onClick={() => setEdit(!edit)}>
-          {!edit ? "Edit Casting Info" : "Cancel"}
-        </button>
-      )}
-      {edit && (
-        <div className="edit-casting">
-          <label htmlFor="name"></label>
-          <input
-            placeholder="Name"
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <label htmlFor="name"></label>
-          <textarea
-            placeholder="Description"
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <label htmlFor="image-url">Image URL</label>
-          <input
-            type="text"
-            id="image-url"
-            value={image_url}
-            onChange={(e) => setImage_url(e.target.value)}
-          />
-          <button className = "subbtn" onClick={handleUpdate}>Update Casting Info</button>
-          
-        </div>
-      )}
+              {isCreator && (
+                <button className="subbtn" onClick={() => setEdit(!edit)}>
+                  {!edit ? "Edit Casting Info" : "Cancel"}
+                </button>
+              )}
+              {edit && (
+                <div className="edit-casting">
+                  <label htmlFor="name"></label>
+                  <input
+                    placeholder="Name"
+                    type="text"
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <label htmlFor="name"></label>
+                  <textarea
+                    placeholder="Description"
+                    id="description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                  <label htmlFor="image-url">Image URL</label>
+                  <input
+                    type="text"
+                    id="image-url"
+                    value={image_url}
+                    onChange={(e) => setImage_url(e.target.value)}
+                  />
+                  <button className="subbtn" onClick={handleUpdate}>
+                    Update Casting Info
+                  </button>
+                </div>
+              )}
 
+              {!willDelete && (
+                <button className="subbtn" onClick={() => setWillDelete(true)}>
+                  Delete Casting
+                </button>
+              )}
+              {willDelete && (
+                <>
+                  <p>
+                    Are you sure you want to delete this casting? It will be
+                    gone for good!
+                  </p>
+                  <button className="subbtn" onClick={handleDelete}>
+                    Yes, delete
+                  </button>
+                  <button
+                    className="subbtn"
+                    onClick={() => setWillDelete(false)}
+                  >
+                    no thanks
+                  </button>
+                </>
+              )}
+            </div>
 
-{!willDelete && (
-    <button className = "subbtn" onClick={() => setWillDelete(true)}>Delete Casting</button>
-  )}
-  {willDelete && (
-    <>
-      <p>
-        Are you sure you want to delete this casting? It will be gone for
-        good!
-      </p>
-      <button className = "subbtn" onClick={handleDelete}>Yes, delete</button>
-      <button className = "subbtn" onClick={() => setWillDelete(false)}>no thanks</button>
-    </>
-  )}
- </div>
-
-            <p>
-            {castDatas.description}
-            </p>
+            <p>{castDatas.description}</p>
           </div>
           <div className="like">
-
-          <FaHeart
-            style={{ color: pastVoteLike ? "red" : "gray" }}
-            onClick={
-              pastVoteId
-                ? () => handleVoteUpdate(true)
-                : () => handleNewVote(true)
-            }
-          />{" "}
-          <FaHeartBroken
-            style={{ color: pastVoteLike === false ? "blue" : "gray" }}
-            onClick={
-              pastVoteId
-                ? () => handleVoteUpdate(false)
-                : () => handleNewVote(false)
-            }
-          />
-             </div>
+            <FaHeart
+              style={{ color: pastVoteLike ? "red" : "gray" }}
+              onClick={
+                pastVoteId
+                  ? () => handleVoteUpdate(true)
+                  : () => handleNewVote(true)
+              }
+            />{" "}
+            <FaHeartBroken
+              style={{ color: pastVoteLike === false ? "blue" : "gray" }}
+              onClick={
+                pastVoteId
+                  ? () => handleVoteUpdate(false)
+                  : () => handleNewVote(false)
+              }
+            />
+          </div>
           <h5 className="vote-count">Casting Vote: {castingVotes}</h5>
-       
+
           <div className="casting-comment">
-          <label htmlFor="add-new-casting-comment"></label>
-          <input
-            className="forms"
-            id="add-new-casting-comment"
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-            placeholder="...share a comment"
-          />
-          <button className = "subbtn" onClick={handleCreateNewComment}>Add</button>
+            <label htmlFor="add-new-casting-comment"></label>
+            <input
+              className="forms"
+              id="add-new-casting-comment"
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              placeholder="...share a comment"
+            />
+            <button className="subbtn" onClick={handleCreateNewComment}>
+              Add
+            </button>
           </div>
           <div className="commented">
-          <details>
-            <summary>Casting Comments</summary>
-          {castDatas &&
-            castDatas.comments.map((comment) => (
-              <div className="commented">
-                <p key={"comment-" + comment.id}>
-                  {comment.user.username}: {comment.comment}
-                </p>
-                {props.userData.user &&
-                  comment.user.id === props.userData.user.id && (
-
-                    <button className = "subbtn" onClick={() => handleDeleteComment(comment.id)}>
-                      X
-
-                    </button>
-                  )}
-              </div>
-            ))}
-              </details>
-
-        </div>
+            <details>
+              <summary>Casting Comments</summary>
+              {castDatas &&
+                castDatas.comments.map((comment) => (
+                  <div className="commented">
+                    <p key={"comment-" + comment.id}>
+                      <strong>{comment.user.username}:</strong>{" "}
+                      {comment.comment}
+                    </p>
+                    {props.userData.user &&
+                      comment.user.id === props.userData.user.id && (
+                        <button
+                          className="subbtn"
+                          onClick={() => handleDeleteComment(comment.id)}
+                        >
+                          X
+                        </button>
+                      )}
+                  </div>
+                ))}
+            </details>
+          </div>
         </div>
         <div className="add-character">
           {isCreator && (
@@ -325,7 +331,7 @@ const Cast = (props) => {
               castingId={castDatas.id}
             />
           )}
-          </div>
+        </div>
         <div className="characterdiv">
           {castDatas &&
             castDatas.characters.map((char) => (
@@ -339,11 +345,7 @@ const Cast = (props) => {
                 isCreator={isCreator}
               />
             ))}
-
-            </div>
-     
-
-        
+        </div>
       </>
     );
   }
