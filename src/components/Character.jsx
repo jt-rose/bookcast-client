@@ -3,8 +3,8 @@ import "../styles/jihee.css";
 import { FaHeart, FaHeartBroken } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
-import { GrEdit } from 'react-icons/gr';
-import { BiEraser, BiCommentDetail } from 'react-icons/bi';
+import { GrEdit } from "react-icons/gr";
+import { BiEraser, BiCommentDetail } from "react-icons/bi";
 
 const Character = (props) => {
   const [edit, setEdit] = useState(false);
@@ -156,137 +156,141 @@ const Character = (props) => {
 
   return (
     <div className="characters">
-    <div className="charactercard">
-      <img
-        src={props.character.photo_url}
-        alt={props.character.actor + "-photo"}
-      />
-  
-      <h2>{props.character.name}</h2>
-      <h3>
-        Played by <span>{props.character.actor}</span>
-      </h3>
-      <p>
-        <span>Description: </span>
-        {props.character.description}
-      </p>
-      <div className="like">
-      <FaHeart
-        style={{ color: pastVoteLike ? "red" : "gray"}}
-        onClick={
-          pastVoteId ? () => handleVoteUpdate(true) : () => handleNewVote(true)
-        }
-      />{" "}
-      <FaHeartBroken
-        style={{ color: pastVoteLike === false ? "blue" : "gray" }}
-        onClick={
-          pastVoteId
-            ? () => handleVoteUpdate(false)
-            : () => handleNewVote(false)
-        }
-      />
-
-      
-    </div>
-    <h5>Votes: {totalVotes}</h5>
-    <div className="charactercard-edit">
-      {props.isCreator && (
-        <button className = "subbtn" onClick={() => setEdit(!edit)}>
-          {!edit ? "Edit Character Info" : "Cancel"}
-
-        </button>
-      )}
-      {edit && (
-        <div className="charactercard-edit-form">
-          <label htmlFor={"edit-character-name-" + props.character.id}>
-          </label>
-          <input
-            placeholder="Name"
-            type="text"
-            id={"edit-character-name-" + props.character.id}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-
-          <label htmlFor={"edit-character-actor-" + props.character.id}>
-          </label>
-          <input
-            placeholder="Actor"
-            type="text"
-            id={"edit-character-actor-" + props.character.id}
-            value={actor}
-            onChange={(e) => setActor(e.target.value)}
-          />
-
-          <label htmlFor={"edit-character-description-" + props.character.id}>
-          </label>
-          <textarea
-            rows="4" cols="32"
-            placeholder="Description"
-            id={"edit-character-description-" + props.character.id}
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <label htmlFor={"edit-character-image-url-" + props.character.id}>
-          </label>
-          <input
-            placeholder="Image_url"
-            type="text"
-            id={"edit-character-image-url-" + props.character.id}
-            value={photoUrl}
-            onChange={(e) => setPhotoUrl(e.target.value)}
-          />
-
-          <button className = "subbtn" onClick={handleUpdate}>Update Character Info</button>
-          
-        </div>
-      )}
-
-      <button className = "subbtn" onClick={handleDelete}>Delete</button>
-
-      <div className="comments">
-        <label htmlFor={"add-new-character-comment" + props.character.id}>
-        </label>
-        <input
-          id={"add-new-character-comment" + props.character.id}
-          value={newComment}
-          onChange={(e) => setNewComment(e.target.value)}
-          placeholder="...share a comment"
+      <div className="charactercard">
+        <img
+          src={props.character.photo_url}
+          alt={props.character.actor + "-photo"}
         />
-        <button className = "subbtn" onClick={handleCreateNewComment}>Add</button>
 
+        <h2>{props.character.name}</h2>
+        <h3>
+          Played by <span>{props.character.actor}</span>
+        </h3>
+        <p>
+          <span>Description: </span>
+          {props.character.description}
+        </p>
+        <div className="like">
+          <FaHeart
+            style={{ color: pastVoteLike ? "red" : "gray" }}
+            onClick={
+              pastVoteId
+                ? () => handleVoteUpdate(true)
+                : () => handleNewVote(true)
+            }
+          />{" "}
+          <FaHeartBroken
+            style={{ color: pastVoteLike === false ? "blue" : "gray" }}
+            onClick={
+              pastVoteId
+                ? () => handleVoteUpdate(false)
+                : () => handleNewVote(false)
+            }
+          />
+        </div>
+        <h5>Votes: {totalVotes}</h5>
+        <div className="charactercard-edit">
+          {props.isCreator && (
+            <button className="subbtn" onClick={() => setEdit(!edit)}>
+              {!edit ? "Edit Character Info" : "Cancel"}
+            </button>
+          )}
+          {edit && (
+            <div className="charactercard-edit-form">
+              <label
+                htmlFor={"edit-character-name-" + props.character.id}
+              ></label>
+              <input
+                placeholder="Name"
+                type="text"
+                id={"edit-character-name-" + props.character.id}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
 
-      </div>
-      <div className="overflow">
+              <label
+                htmlFor={"edit-character-actor-" + props.character.id}
+              ></label>
+              <input
+                placeholder="Actor"
+                type="text"
+                id={"edit-character-actor-" + props.character.id}
+                value={actor}
+                onChange={(e) => setActor(e.target.value)}
+              />
 
-      <details>
-            <summary>Comments</summary>
-        {props.character.comments.map((comment) => (
-          <div className="character-comment">
-            <div
-              key={props.character.id + "-char-comment-" + comment.id}
-              className="comment"
-            >
-              <span>{comment.user.username}:</span> {comment.comment}
+              <label
+                htmlFor={"edit-character-description-" + props.character.id}
+              ></label>
+              <textarea
+                rows="4"
+                cols="32"
+                placeholder="Description"
+                id={"edit-character-description-" + props.character.id}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+              <label
+                htmlFor={"edit-character-image-url-" + props.character.id}
+              ></label>
+              <input
+                placeholder="Image_url"
+                type="text"
+                id={"edit-character-image-url-" + props.character.id}
+                value={photoUrl}
+                onChange={(e) => setPhotoUrl(e.target.value)}
+              />
+
+              <button className="subbtn" onClick={handleUpdate}>
+                Update Character Info
+              </button>
             </div>
-            {props.userData.user &&
-              comment.user.id === props.userData.user.id && (
-                <button className = "delete-btn" onClick={() => handleDeleteComment(comment.id)}>
-                  X
-                </button>
-              )}
-          </div>
-        ))}
-          </details>
-          </div>
+          )}
 
-    </div>
+          <button className="subbtn" onClick={handleDelete}>
+            Delete
+          </button>
 
+          <div className="comments">
+            <label
+              htmlFor={"add-new-character-comment" + props.character.id}
+            ></label>
+            <input
+              id={"add-new-character-comment" + props.character.id}
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              placeholder="...share a comment"
+            />
+            <button className="subbtn" onClick={handleCreateNewComment}>
+              Add
+            </button>
+          </div>
+          <div className="overflow">
+            <details>
+              <summary>Comments</summary>
+              {props.character.comments.map((comment) => (
+                <div className="character-comment">
+                  <div
+                    key={props.character.id + "-char-comment-" + comment.id}
+                    className="comment"
+                  >
+                    <span>{comment.user.username}:</span> {comment.comment}
+                  </div>
+                  {props.userData.user &&
+                    comment.user.id === props.userData.user.id && (
+                      <button
+                        className="delete-btn"
+                        onClick={() => handleDeleteComment(comment.id)}
+                      >
+                        X
+                      </button>
+                    )}
+                </div>
+              ))}
+            </details>
+          </div>
+        </div>
       </div>
-      {/* <h3>Played by {props.character.actor}</h3>
-      <h4>Description: {props.character.description}</h4> */}
-
-
     </div>
   );
 };

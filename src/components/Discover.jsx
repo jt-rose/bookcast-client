@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "../styles/jihee.css";
-import Add from "./Add";
 import { useNavigate } from "react-router-dom";
 
 const convertLikeToInt = (likeObject) => {
@@ -17,7 +16,7 @@ const convertLikeToInt = (likeObject) => {
   }
 };
 
-const Discover = (props) => {
+const Discover = () => {
   let [discovers, setDiscovers] = useState([]);
   let [filter, setFilter] = useState("");
   let [sortByMostVotes, setSortByMostVotes] = useState(false);
@@ -48,46 +47,9 @@ const Discover = (props) => {
       .catch((error) => console.error(error));
   };
 
-  const handleDelete = (event) => {
-    axios
-      .delete(
-        "https://bookcast-server.herokuapp.com/api/castings/" +
-          event.target.value,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Token " + props.tokenData.token,
-          },
-        }
-      )
-      .then((response) => {
-        getDiscovers();
-      });
-  };
-
   useEffect(() => {
     getDiscovers();
   }, []);
-
-  const handleUpdate = (editCasting) => {
-    console.log(editCasting);
-    axios
-      .put(
-        "https://bookcast-server.herokuapp.com/api/castings/" +
-          editCasting.id +
-          "/",
-        editCasting,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Token " + props.tokenData.token,
-          },
-        }
-      )
-      .then((response) => {
-        getDiscovers();
-      });
-  };
 
   return (
     <>

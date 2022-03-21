@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Edit from "./Edit";
 import axios from "axios";
 import Add from "./Add";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import "../styles/Datas.css";
 import "../styles/jihee.css";
 
@@ -37,7 +36,6 @@ const Casting = (props) => {
       })
       .then((response) => {
         console.log(response);
-        //getCastings()
         navigate("/cast/" + response.data.id);
       });
   };
