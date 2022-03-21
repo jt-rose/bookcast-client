@@ -79,7 +79,9 @@ const Casting = (props) => {
                   navigate("/cast/" + casting.id);
                 }}
               >
-                <p className="date">{casting.created}</p>
+                <p className="date">
+                  {new Date(casting.created).toLocaleDateString()}
+                </p>
                 <h4>{casting.source_name}</h4>
                 <img src={casting.source_image_url}></img>
                 <p className="desc"> {casting.description}</p>
