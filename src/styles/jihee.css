@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 html {
   background-color: #f8f7e9;
 }
@@ -19,14 +18,14 @@ html {
           box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  color: #8C4830;
+  color: #8c4830;
   cursor: pointer;
   display: inline-block;
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
   line-height: 16px;
   outline: none;
-  padding: .7rem;
+  padding: 0.7rem;
   text-decoration: none;
   -webkit-transition: all 235ms ease-in-out;
   transition: all 235ms ease-in-out;
@@ -64,15 +63,15 @@ html {
           box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  color: #8C4830;
+  color: #8c4830;
   cursor: pointer;
   display: inline-block;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
-  font-size: .75rem;
+  font-size: 0.75rem;
   line-height: 12px;
   outline: none;
-  padding: .5rem;
+  padding: 0.5rem;
   text-decoration: none;
   -webkit-transition: all 235ms ease-in-out;
   transition: all 235ms ease-in-out;
@@ -110,15 +109,15 @@ html {
           box-shadow: rgba(0, 0, 0, 0.2) 15px 28px 25px -18px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  color: #8C4830;
+  color: #8c4830;
   cursor: pointer;
   display: inline-block;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  font-size: .60rem;
+  font-size: 0.6rem;
   line-height: 12px;
   outline: none;
-  padding: .25rem;
+  padding: 0.25rem;
   text-decoration: none;
   -webkit-transition: all 235ms ease-in-out;
   transition: all 235ms ease-in-out;
@@ -146,7 +145,8 @@ html {
   font-size: 2em;
 }
 
-.login, .signup {
+.login,
+.signup {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -162,7 +162,8 @@ html {
           align-items: center;
 }
 
-.login, .signup label {
+.login,
+.signup label {
   letter-spacing: 2px;
 }
 
@@ -183,7 +184,7 @@ html {
 }
 
 .signup input:focus {
-  border-bottom: 3.5px solid #8C4830;
+  border-bottom: 3.5px solid #8c4830;
 }
 
 .login input {
@@ -203,7 +204,7 @@ html {
 }
 
 .login input:focus {
-  border-bottom: 3.5px solid #8C4830;
+  border-bottom: 3.5px solid #8c4830;
 }
 
 .signupInput {
@@ -301,13 +302,13 @@ html {
   border-radius: 0% 0% 0% 0% / 0% 0% 0% 0%;
   -webkit-box-shadow: 20px 20px rgba(0, 0, 0, 0.15);
           box-shadow: 20px 20px rgba(0, 0, 0, 0.15);
-  -webkit-transition: all .4s ease;
-  transition: all .4s ease;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
 }
 
 .discover:hover {
-  -webkit-box-shadow: 10px 10px #8C4830;
-          box-shadow: 10px 10px #8C4830;
+  -webkit-box-shadow: 10px 10px #8c4830;
+          box-shadow: 10px 10px #8c4830;
 }
 
 .dis-desc {
@@ -391,11 +392,11 @@ html {
   background-color: #f8f7e9;
   text-align: center;
   letter-spacing: 2px;
-  font-size: .8em;
+  font-size: 0.8em;
 }
 
 .addForm input:focus {
-  border-bottom: 3.5px solid #8C4830;
+  border-bottom: 3.5px solid #8c4830;
 }
 
 .castings {
@@ -430,13 +431,13 @@ html {
   border-radius: 0% 0% 0% 0% / 0% 0% 0% 0%;
   -webkit-box-shadow: 20px 20px rgba(0, 0, 0, 0.15);
           box-shadow: 20px 20px rgba(0, 0, 0, 0.15);
-  -webkit-transition: all .4s ease;
-  transition: all .4s ease;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
 }
 
 .casting:hover {
-  -webkit-box-shadow: 10px 10px #8C4830;
-          box-shadow: 10px 10px #8C4830;
+  -webkit-box-shadow: 10px 10px #8c4830;
+          box-shadow: 10px 10px #8c4830;
 }
 
 .casting img {
@@ -585,7 +586,7 @@ html {
 }
 
 .edit-casting input:focus {
-  border-bottom: 3.5px solid #8C4830;
+  border-bottom: 3.5px solid #8c4830;
 }
 
 textarea {
@@ -628,7 +629,7 @@ textarea {
 }
 
 .add-character input:focus {
-  border-bottom: 3.5px solid #8C4830;
+  border-bottom: 3.5px solid #8c4830;
 }
 
 .characterdiv {
@@ -654,8 +655,8 @@ textarea {
   border-radius: 0% 0% 0% 0% / 0% 0% 0% 0%;
   -webkit-box-shadow: 20px 20px rgba(0, 0, 0, 0.15);
           box-shadow: 20px 20px rgba(0, 0, 0, 0.15);
-  -webkit-transition: all .4s ease;
-  transition: all .4s ease;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -670,8 +671,8 @@ textarea {
 }
 
 .characters:hover {
-  -webkit-box-shadow: 10px 10px #8C4830;
-          box-shadow: 10px 10px #8C4830;
+  -webkit-box-shadow: 10px 10px #8c4830;
+          box-shadow: 10px 10px #8c4830;
 }
 
 .charactercard {
@@ -690,7 +691,8 @@ textarea {
       align-self: center;
 }
 
-.charactercard input, textarea {
+.charactercard input,
+textarea {
   line-height: 20px;
   margin-left: 6px;
   margin-right: 6px;
@@ -733,7 +735,7 @@ textarea {
 }
 
 .charactercard-edit input:focus {
-  border-bottom: 3.5px solid #8C4830;
+  border-bottom: 3.5px solid #8c4830;
 }
 
 .overflow {
@@ -768,7 +770,7 @@ textarea {
 }
 
 .comments input:focus {
-  border-bottom: 3.5px solid #8C4830;
+  border-bottom: 3.5px solid #8c4830;
 }
 
 .character-comment {
@@ -796,7 +798,7 @@ textarea {
 }
 
 .border {
-  border: 20px #8C4830 solid;
+  border: 20px #8c4830 solid;
   background-color: #dba06c;
   overflow-x: scroll;
 }
