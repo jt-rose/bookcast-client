@@ -303,8 +303,12 @@ const Cast = (props) => {
           <div className="commented">
             <details open={openComments}>
               <summary onClick={() => setOpenComments(!openComments)}>
-                Casting Comments
+                Casting Comments{" "}
+                {castDatas ? `(${castDatas.comments.length})` : `(0)`}
               </summary>
+              {castDatas && !castDatas.comments.length && (
+                <p>No comments yet! Why not be the first!</p>
+              )}
               {castDatas &&
                 castDatas.comments.map((comment) => (
                   <div className="commented">
