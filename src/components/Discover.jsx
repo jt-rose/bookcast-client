@@ -20,18 +20,23 @@ const convertLikeToInt = (likeObject) => {
 const Discover = (props) => {
   let [discovers, setDiscovers] = useState([]);
   let [filter, setFilter] = useState("");
+  let [sortByMostVotes, setSortByMostVotes] = useState(false);
 
   let navigate = useNavigate();
 
-  let sortedCastings = discovers;
-  sortedCastings
-    .sort(
-      (a, b) =>
-        a.votes.reduce((a, b) => a + convertLikeToInt(b), 0) -
-        b.votes.reduce((a, b) => a + convertLikeToInt(b), 0)
-    )
-    .reverse();
-  console.log(sortedCastings);
+  let castings = discovers;
+  if (sortByMostVotes) {
+    castings
+      .sort(
+        (a, b) =>
+          a.votes.reduce((a, b) => a + convertLikeToInt(b), 0) -
+          b.votes.reduce((a, b) => a + convertLikeToInt(b), 0)
+      )
+      .reverse();
+    console.log(castings);
+  } else {
+    castings.sort((a, b) => new Date(a.created) - new Date(b.created));
+  }
 
   const getDiscovers = () => {
     axios
@@ -101,8 +106,11 @@ const Discover = (props) => {
           }}
         ></input>
       </div>
+      <button onClick={() => setSortByMostVotes(!sortByMostVotes)}>
+        {!sortByMostVotes ? "Sort By Most Votes" : "Sort by Recent"}
+      </button>
       <div className="discovers">
-        {discovers
+        {castings
           .filter((search) =>
             search.source_name.toLowerCase().includes(filter.toLowerCase())
           )
@@ -118,7 +126,6 @@ const Discover = (props) => {
                 <img src={discover.source_image_url}></img>
 
                 <li className="dis-desc">{discover.description}</li>
-
               </div>
             );
           })}
