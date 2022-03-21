@@ -80,4 +80,8 @@
   -webkit-box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
           box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 }
+
+h5 {
+  width: 60%;
+}
 /*# sourceMappingURL=home.css.map */

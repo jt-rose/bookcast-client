@@ -1,8 +1,9 @@
-// import "../styles/character.css";
 import "../styles/jihee.css";
 import { FaHeart, FaHeartBroken } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
+import { GrEdit } from 'react-icons/gr';
+import { BiEraser, BiCommentDetail } from 'react-icons/bi';
 
 const Character = (props) => {
   const [edit, setEdit] = useState(false);
@@ -183,6 +184,7 @@ const Character = (props) => {
             : () => handleNewVote(false)
         }
       />
+
       
     </div>
     <h5>Votes: {totalVotes}</h5>
@@ -190,6 +192,7 @@ const Character = (props) => {
       {props.isCreator && (
         <button className = "subbtn" onClick={() => setEdit(!edit)}>
           {!edit ? "Edit Character Info" : "Cancel"}
+
         </button>
       )}
       {edit && (
@@ -237,6 +240,7 @@ const Character = (props) => {
           
         </div>
       )}
+
       <button className = "subbtn" onClick={handleDelete}>Delete</button>
 
       <div className="comments">
@@ -280,6 +284,7 @@ const Character = (props) => {
       </div>
       {/* <h3>Played by {props.character.actor}</h3>
       <h4>Description: {props.character.description}</h4> */}
+
 
     </div>
   );

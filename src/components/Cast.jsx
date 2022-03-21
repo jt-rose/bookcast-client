@@ -5,7 +5,11 @@ import Character from "./Character";
 // import "../styles/cast.css";
 import "../styles/jihee.css";
 import { FaHeart, FaHeartBroken } from "react-icons/fa";
+import { GrEdit } from 'react-icons/gr';
+import { BiEraser } from 'react-icons/bi';
+
 import AddCharacter from "./AddCharacter";
+
 
 const Cast = (props) => {
   const params = useParams();
@@ -191,12 +195,58 @@ const Cast = (props) => {
   } else {
     return (
       <>
+
         {/* <h1>Hi, this is cast id: {params.castid}</h1> */}
         <div className="mediadiv">
           <div className="castinfo">
             
             <h2 className="title">{castDatas.source_name}</h2>
      
+
+            {isCreator && (
+              <button className="btn" onClick={() => setEdit(!edit)}>
+                {!edit ? <GrEdit /> : "Cancel"}
+              </button>
+              
+            )}
+            {!willDelete && (
+          <button className="btn" onClick={() => setWillDelete(true)}><BiEraser /></button>
+        )}
+        {willDelete && (
+          <>
+            <p>
+              Are you sure you want to delete this casting? It will be gone for
+              good!
+            </p>
+            <button onClick={handleDelete}>Yes, delete</button>
+            <button onClick={() => setWillDelete(false)}>no thanks</button>
+          </>
+        )}
+            {edit && (
+              <div>
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <label htmlFor="name">Description</label>
+                <textarea
+                  id="description"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+                <label htmlFor="image-url">Image URL</label>
+                <input
+                  type="text"
+                  id="image-url"
+                  value={image_url}
+                  onChange={(e) => setImage_url(e.target.value)}
+                />
+                <button onClick={handleUpdate}>Update Casting Info</button>
+              </div>
+            )}
             <img src={castDatas.source_image_url}></img>
             <div className="delete-cast">
       
@@ -255,7 +305,7 @@ const Cast = (props) => {
             </p>
           </div>
           <div className="like">
-          <FaHeart
+                      <FaHeart
             style={{ color: pastVoteLike ? "red" : "gray" }}
             onClick={
               pastVoteId
@@ -277,6 +327,7 @@ const Cast = (props) => {
           <div className="casting-comment">
           <label htmlFor="add-new-casting-comment"></label>
           <input
+            className="forms"
             id="add-new-casting-comment"
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
@@ -295,8 +346,12 @@ const Cast = (props) => {
                 </p>
                 {props.userData.user &&
                   comment.user.id === props.userData.user.id && (
+
                     <button className = "subbtn" onClick={() => handleDeleteComment(comment.id)}>
                       X
+
+                    <button onClick={() => handleDeleteComment(comment.id)}>
+                      <BiEraser />
                     </button>
                   )}
               </div>
