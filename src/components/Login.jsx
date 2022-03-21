@@ -30,10 +30,16 @@ const Login = (props) => {
   return (
     <>
       <div className="login">
+        {props.errorData.error && (
+          <p style={{ color: "red" }}>
+            Uh Oh! That username / password combination didn't work!
+          </p>
+        )}
         <Link to="/register">
           {" "}
           <button className="auth">Don't have an account yet?</button>
         </Link>
+
         <div className="loginInput">
           <label htmlFor="login-username"> Username</label>
           <input

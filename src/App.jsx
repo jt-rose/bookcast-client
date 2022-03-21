@@ -31,7 +31,7 @@ const App = () => {
         setUser(response.data);
         setError(false);
       })
-      .catch((err) => setError(err));
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -137,7 +137,7 @@ const App = () => {
             />
           }
         />
-          <Route
+        <Route
           path="/register"
           element={
             <Register
