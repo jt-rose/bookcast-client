@@ -82,7 +82,9 @@ const Discover = () => {
                 key={`${discover.created}-${index}`}
                 onClick={() => navigate("/cast/" + discover.id)}
               >
-                <li className="dis-date">Date: {discover.created}</li>
+                <li className="dis-date">
+                  {new Date(discover.created).toLocaleDateString()}
+                </li>
                 <li>{discover.source_name}</li>
                 <img src={discover.source_image_url}></img>
 
