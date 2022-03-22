@@ -92,6 +92,7 @@ const Character = (props) => {
       .then(() => {
         props.getCasting();
         setOpenComments(true);
+        setNewComment("");
       })
       .catch((err) => props.errorData.setError(err));
   };
@@ -199,7 +200,7 @@ const Character = (props) => {
               {!edit ? "Edit Character Info" : "Cancel"}
             </button>
           )}
-          {edit && (
+          {props.isCreator && edit && (
             <div className="charactercard-edit-form">
               <label
                 htmlFor={"edit-character-name-" + props.character.id}
@@ -251,9 +252,11 @@ const Character = (props) => {
             </div>
           )}
 
-          <button className="subbtn" onClick={handleDelete}>
-            Delete
-          </button>
+          {props.isCreator && (
+            <button className="subbtn" onClick={handleDelete}>
+              Delete
+            </button>
+          )}
 
           <div className="comments">
             <label
