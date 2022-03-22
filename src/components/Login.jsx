@@ -1,16 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
-import {Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import "../styles/auth.css";
 import "../styles/jihee.css";
 
 export const serverURL = "https://bookcast-server.herokuapp.com";
-//   process.env.NODE_ENV === "production"
-//     ? "https://bookcast-server.herokuapp.com"
-//     : "http://localhost:8000";
 
 const Login = (props) => {
-
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
 
@@ -31,52 +27,46 @@ const Login = (props) => {
       .catch((err) => props.errorData.setError(err));
   };
 
-  const getUser = () => {
-    axios
-      .get(serverURL + "/api/auth/user", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Token " + props.tokenData.token,
-        },
-      })
-      .then((response) => {
-        console.log(response);
-        props.userData.setUser(response.data);
-        props.errorData.setError(false);
-      })
-      .catch((err) => props.errorData.setError(err));
-  };
-
   return (
     <>
-    
-        <div className="login">
-        <Link to ='/register'> <button className="auth" >Don't have an account yet?</button></Link>
-      <div className="loginInput">
-      <label htmlFor="login-username"> Username</label>
-      <input className = "forms"
-        type="text"
-        id="login-username"
-        value={loginUsername}
-        onChange={(e) => setLoginUsername(e.target.value)}
-      />
-      <label htmlFor="login-password"> Password</label>
-      <input className = "forms"
-        type="password"
-        id="login-password"
-        value={loginPassword}
-        onChange={(e) => setLoginPassword(e.target.value)}
-      />
-      <button className="btn" onClick={login}>login</button>
-      </div>
-      </div>
+      <div className="login">
+        {props.errorData.error && (
+          <p style={{ color: "red" }}>
+            Uh Oh! That username / password combination didn't work!
+          </p>
+        )}
+        <Link to="/register">
+          {" "}
+          <button className="auth">Don't have an account yet?</button>
+        </Link>
 
-      {/* <button className="btn" onClick={getUser}>get user</button> */}
-            {/* {props.errorData.error && (
-        <p style={{ color: "red" }}>Error: {props.errorData.error.message}</p>
-      )}
-      <p>Token: {props.tokenData.token ? props.tokenData.token : "NA"}</p> */}
-
+        <div className="loginInput">
+          <label htmlFor="login-username"> Username</label>
+          <input
+            className="forms"
+            type="text"
+            id="login-username"
+            value={loginUsername}
+            onChange={(e) => setLoginUsername(e.target.value)}
+          />
+          <label htmlFor="login-password"> Password</label>
+          <input
+            className="forms"
+            type="password"
+            id="login-password"
+            value={loginPassword}
+            onChange={(e) => setLoginPassword(e.target.value)}
+          />
+          <button className="btn" onClick={login}>
+            login
+          </button>
+        </div>
+      </div>
+      <div className="login-footer">
+                <div className="footer-content">
+                    <p>created by <a href = "https://www.linkedin.com/in/jeffreytrose/" target="_blank">Jeff Rose</a>, <a href = "https://www.linkedin.com/in/jiheekim03/" target="_blank">Jihee Kim</a>, and <a href = "https://www.linkedin.com/in/scarletpuma/" target="_blank">Scarlet Puma</a></p>
+                </div>
+        </div>
     </>
   );
 };

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Edit from "./Edit";
 import axios from "axios";
 import Add from "./Add";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Footer from '../components/Footer'
 // import "../styles/Datas.css";
 import "../styles/jihee.css";
 
@@ -12,9 +12,14 @@ const Casting = (props) => {
 
   let navigate = useNavigate();
 
-  const getCastings = () => {
+  const getMyCastings = () => {
     axios
-      .get("https://bookcast-server.herokuapp.com/api/castings/")
+      .get("https://bookcast-server.herokuapp.com/api/mycastings", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Token " + props.tokenData.token,
+        },
+      })
       .then(
         (response) => setCastings(response.data),
         (err) => console.error(err)
@@ -31,21 +36,19 @@ const Casting = (props) => {
         },
       })
       .then((response) => {
-        console.log(response);
-        //getCastings()
         navigate("/cast/" + response.data.id);
       });
   };
 
   useEffect(() => {
-    getCastings();
+    getMyCastings();
   }, []);
 
   return (
     <>
-        <div className="page-title">
+      <div className="page-title">
         <p>CASTING</p>
-        </div>
+      </div>
       <div className="searchDiv">
         <input
           className="searchInput"
@@ -74,7 +77,9 @@ const Casting = (props) => {
                   navigate("/cast/" + casting.id);
                 }}
               >
-                <p className="date">{casting.created}</p>
+                <p className="date">
+                  {new Date(casting.created).toLocaleDateString()}
+                </p>
                 <h4>{casting.source_name}</h4>
                 <img src={casting.source_image_url}></img>
                 <p className="desc"> {casting.description}</p>
@@ -82,6 +87,7 @@ const Casting = (props) => {
             );
           })}
       </div>
+      <Footer />
     </>
   );
 };

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Edit from "./Edit";
 import axios from "axios";
-import Add from "./Add";
+import Footer from '../components/Footer'
 // import "../styles/Datas.css";
 import "../styles/jihee.css";
 
@@ -10,10 +8,6 @@ import "../styles/jihee.css";
 
 const Home = (props) => {
   let [castings, setCastings] = useState([]);
-  let [filter, setFilter] = useState("");
-  let navigate = useNavigate();
-
-
 
   const getCastings = () => {
     axios
@@ -31,24 +25,19 @@ const Home = (props) => {
 
   return (
     <>
-
-       <div className="home-title">
+      <div className="home-title">
         <h1>Book Cast</h1>
         <p>Cast your favorite stories</p>
-        </div>
-        <div>
-          
-        </div>
+      </div>
+      <div></div>
       <div className="border">
-      <div className="home-imgs">
-
-        {castings.map((casting, index) => {
-          return ( 
-            <img src={casting.source_image_url}></img>
-          );
-        })}
+        <div className="home-imgs">
+          {castings.map((casting, index) => {
+            return <img src={casting.source_image_url}></img>;
+          })}
+        </div>
       </div>
-      </div>
+      <Footer />
     </>
   );
 };
