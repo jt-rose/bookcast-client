@@ -72,6 +72,13 @@ const Character = (props) => {
       .catch((err) => props.errorData.setError(err));
   };
 
+  // confirm length of comment is under 60
+  const handleNewCommentUpdate = (event) => {
+    if (event.target.value.length <= 60) {
+      setNewComment(event.target.value);
+    }
+  };
+
   const handleCreateNewComment = () => {
     axios
       .post(
@@ -265,7 +272,7 @@ const Character = (props) => {
             <input
               id={"add-new-character-comment" + props.character.id}
               value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
+              onChange={handleNewCommentUpdate}
               placeholder="...share a comment"
             />
             <button className="subbtn" onClick={handleCreateNewComment}>
