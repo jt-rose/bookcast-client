@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
+
 import axios from "axios";
 import Footer from '../components/Footer'
+import { useNavigate } from "react-router";
 // import "../styles/Datas.css";
 import "../styles/jihee.css";
 
-// Home and Castings are currently the same - update later
-
 const Home = (props) => {
   let [castings, setCastings] = useState([]);
+
+  let navigate = useNavigate();
 
   const getCastings = () => {
     axios
@@ -33,7 +35,12 @@ const Home = (props) => {
       <div className="border">
         <div className="home-imgs">
           {castings.map((casting, index) => {
-            return <img src={casting.source_image_url}></img>;
+            return (
+              <img
+                src={casting.source_image_url}
+                onClick={() => navigate("/cast/" + casting.id)}
+              ></img>
+            );
           })}
         </div>
       </div>

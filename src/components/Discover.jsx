@@ -73,6 +73,7 @@ const Discover = () => {
         {!sortByMostVotes ? "Sort By Most Votes" : "Sort by Recent"}
       </button>
       </div>
+
       <div className="discovers">
         {castings
           .filter((search) =>
@@ -85,7 +86,10 @@ const Discover = () => {
                 key={`${discover.created}-${index}`}
                 onClick={() => navigate("/cast/" + discover.id)}
               >
-                <li className="dis-date">Date: {discover.created}</li>
+
+                <li className="dis-date">
+                  {new Date(discover.created).toLocaleDateString()}
+                </li>
                 <h4>{discover.source_name}</h4>
                 <img src={discover.source_image_url}></img>
 
