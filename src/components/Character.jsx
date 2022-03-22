@@ -72,6 +72,13 @@ const Character = (props) => {
       .catch((err) => props.errorData.setError(err));
   };
 
+  // confirm length of comment is under 60
+  const handleNewCommentUpdate = (event) => {
+    if (event.target.value.length <= 60) {
+      setNewComment(event.target.value);
+    }
+  };
+
   const handleCreateNewComment = () => {
     axios
       .post(
@@ -92,6 +99,7 @@ const Character = (props) => {
       .then(() => {
         props.getCasting();
         setOpenComments(true);
+        setNewComment("");
       })
       .catch((err) => props.errorData.setError(err));
   };
@@ -199,7 +207,7 @@ const Character = (props) => {
               {!edit ? "Edit Character Info" : "Cancel"}
             </button>
           )}
-          {edit && (
+          {props.isCreator && edit && (
             <div className="charactercard-edit-form">
               <label
                 htmlFor={"edit-character-name-" + props.character.id}
@@ -251,9 +259,11 @@ const Character = (props) => {
             </div>
           )}
 
-          <button className="subbtn" onClick={handleDelete}>
-            Delete
-          </button>
+          {props.isCreator && (
+            <button className="subbtn" onClick={handleDelete}>
+              Delete
+            </button>
+          )}
 
           <div className="comments">
             <label
@@ -262,7 +272,7 @@ const Character = (props) => {
             <input
               id={"add-new-character-comment" + props.character.id}
               value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
+              onChange={handleNewCommentUpdate}
               placeholder="...share a comment"
             />
             <button className="subbtn" onClick={handleCreateNewComment}>
