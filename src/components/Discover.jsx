@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "../styles/jihee.css";
 import { useNavigate } from "react-router-dom";
-import Footer from '../components/Footer'
+import Footer from "../components/Footer";
 
 const convertLikeToInt = (likeObject) => {
   switch (likeObject.like) {
@@ -26,15 +26,13 @@ const Discover = () => {
 
   let castings = discovers;
   if (sortByMostVotes) {
-    castings
-      .sort(
-        (a, b) =>
-          a.votes.reduce((a, b) => a + convertLikeToInt(b), 0) -
-          b.votes.reduce((a, b) => a + convertLikeToInt(b), 0)
-      )
-      .reverse();
+    castings.sort(
+      (a, b) =>
+        b.votes.reduce((a, b) => a + convertLikeToInt(b), 0) -
+        a.votes.reduce((a, b) => a + convertLikeToInt(b), 0)
+    );
   } else {
-    castings.sort((a, b) => new Date(a.created) - new Date(b.created));
+    castings.sort((a, b) => new Date(b.created) - new Date(a.created));
   }
 
   const getDiscovers = () => {
@@ -69,9 +67,9 @@ const Discover = () => {
         ></input>
       </div>
       <div className="sortbtn">
-      <button onClick={() => setSortByMostVotes(!sortByMostVotes)}>
-        {!sortByMostVotes ? "Sort By Most Votes" : "Sort by Recent"}
-      </button>
+        <button onClick={() => setSortByMostVotes(!sortByMostVotes)}>
+          {!sortByMostVotes ? "Sort By Most Votes" : "Sort by Recent"}
+        </button>
       </div>
 
       <div className="discovers">
@@ -86,7 +84,6 @@ const Discover = () => {
                 key={`${discover.created}-${index}`}
                 onClick={() => navigate("/cast/" + discover.id)}
               >
-
                 <li className="dis-date">
                   {new Date(discover.created).toLocaleDateString()}
                 </li>
