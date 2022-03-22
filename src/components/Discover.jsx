@@ -86,7 +86,7 @@ const Discover = () => {
                 onClick={() => navigate("/cast/" + discover.id)}
               >
                 <li className="dis-date">Date: {discover.created}</li>
-                <li>{discover.source_name}</li>
+                <h4>{discover.source_name}</h4>
                 <img src={discover.source_image_url}></img>
 
                 <li className="dis-desc">{discover.description}</li>
