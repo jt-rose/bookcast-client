@@ -282,7 +282,7 @@ const Character = (props) => {
           <div className="overflow">
             <details open={openComments}>
               <summary onClick={() => setOpenComments(!openComments)}>
-                Comments
+                Comments {`(${props.character.comments.length})`}
               </summary>
               {props.character.comments.map((comment) => (
                 <div
@@ -293,7 +293,7 @@ const Character = (props) => {
                     key={props.character.id + "-char-comment-" + comment.id}
                     className="comment"
                   >
-                    <span>{comment.user.username}:</span> {comment.comment}
+                    <strong>{comment.user.username}:</strong> {comment.comment}
                   </div>
                   {props.userData.user &&
                     comment.user.id === props.userData.user.id && (
