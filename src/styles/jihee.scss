@@ -52,16 +52,16 @@ html {
 
 .signupInput {
   margin-top: 20px;
-  width: 300px;
+  width: 290px;
   text-align: center;
   align-self: center;
 }
 
 .loginInput {
   margin-top: 20px;
-  width: 300px;
+  width: 290px;
   text-align: center;
-  align-self: center;
+  // align-self: center;
 }
 
 .auth {
@@ -91,6 +91,7 @@ html {
   text-decoration: none;
   color: $color1;
   letter-spacing: 2px;
+  
 }
 
 .navbar a:hover {
@@ -480,9 +481,13 @@ textarea {
 }
 
 .border {
+  margin-top: 70px;
   border: 20px $color9 solid;
   background-color: $color8;
   overflow-x: scroll;
+  margin-left: 50px;
+  margin-right: 50px;
+
   // width: 100%;
 }
 
@@ -501,6 +506,51 @@ textarea {
 .home-title {
   text-align: center;
 }
+
+.sortbtn {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+
+}
+
+.sortbtn button{
+  @include subBtnStyle();
+}
+
+.footer {
+   position: relative;
+   min-height: 22vh;
+  text-align: center;
+  }
+
+.footer-content p {
+  font-size: .8em;
+}
+.footer-content a {
+  color: $color1;
+  text-decoration: none;
+}
+
+.footer-content a:hover{
+  color: $color1;
+  text-decoration: underline;
+}
+
+
+.footer-content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem; 
+  background-color: $color8;
+}
+
+.login-footer {
+  text-align: center;
+}
 @media only screen and (max-width: 600px) {
   .navbar {
     display: flex;
@@ -517,4 +567,10 @@ textarea {
   .home-imgs img {
     width: 180px;
   }
+
+  .footer {
+    position: relative;
+    min-height: 38vh;
+ }
+ 
 }

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import "../styles/jihee.css";
 import { useNavigate } from "react-router-dom";
+import Footer from '../components/Footer'
 
 const convertLikeToInt = (likeObject) => {
   switch (likeObject.like) {
@@ -67,9 +68,12 @@ const Discover = () => {
           }}
         ></input>
       </div>
+      <div className="sortbtn">
       <button onClick={() => setSortByMostVotes(!sortByMostVotes)}>
         {!sortByMostVotes ? "Sort By Most Votes" : "Sort by Recent"}
       </button>
+      </div>
+
       <div className="discovers">
         {castings
           .filter((search) =>
@@ -82,10 +86,11 @@ const Discover = () => {
                 key={`${discover.created}-${index}`}
                 onClick={() => navigate("/cast/" + discover.id)}
               >
+
                 <li className="dis-date">
                   {new Date(discover.created).toLocaleDateString()}
                 </li>
-                <li>{discover.source_name}</li>
+                <h4>{discover.source_name}</h4>
                 <img src={discover.source_image_url}></img>
 
                 <li className="dis-desc">{discover.description}</li>
@@ -93,6 +98,7 @@ const Discover = () => {
             );
           })}
       </div>
+      <Footer />
     </>
   );
 };
