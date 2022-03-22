@@ -572,5 +572,31 @@ textarea {
     position: relative;
     min-height: 38vh;
  }
+ .footer-content p {
+   position: relative;
+   top:3px;
+  font-size: .6em;
+  margin-bottom: 5px;
+}
+
+.signupInput input {
+  margin-left: 5vw;
+}
+
+.loginInput input {
+  margin-left: 5vw;
+}
+.signup input {
+  @include inputStyle(13px);
+  background-color: $color6;
+  letter-spacing: 2px;
+}
+
+.login input {
+  @include inputStyle(13px);
+  background-color: $color6;
+  letter-spacing: 2px;
+  
+}
  
 }
