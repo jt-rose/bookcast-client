@@ -5,8 +5,6 @@ import Character from "./Character";
 // import "../styles/cast.css";
 import "../styles/jihee.css";
 import { FaHeart, FaHeartBroken } from "react-icons/fa";
-import { GrEdit } from "react-icons/gr";
-import { BiEraser } from "react-icons/bi";
 
 import AddCharacter from "./AddCharacter";
 
@@ -209,7 +207,7 @@ const Cast = (props) => {
                   {!edit ? "Edit Casting Info" : "Cancel"}
                 </button>
               )}
-              {edit && (
+              {isCreator && edit && (
                 <div className="edit-casting">
                   <label htmlFor="name"></label>
                   <input
@@ -239,12 +237,12 @@ const Cast = (props) => {
                 </div>
               )}
 
-              {!willDelete && (
+              {isCreator && !willDelete && (
                 <button className="subbtn" onClick={() => setWillDelete(true)}>
                   Delete Casting
                 </button>
               )}
-              {willDelete && (
+              {isCreator && willDelete && (
                 <>
                   <p>
                     Are you sure you want to delete this casting? It will be
