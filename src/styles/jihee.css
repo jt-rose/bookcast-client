@@ -172,6 +172,7 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
   margin-top: 10vh;
+  margin-bottom: 10vh;
   padding: 5px;
   font-family: "Montserrat", sans-serif;
   -webkit-box-align: center;
