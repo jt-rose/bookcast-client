@@ -11,6 +11,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import Cast from "./components/Cast";
 import axios from "axios";
+import Footer from "./components/Footer";
 
 const App = () => {
   // store use data and auth token
@@ -95,59 +96,62 @@ const App = () => {
         )}
       </div>
       {/* castings, Discover   login */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/casting"
-          element={
-            <Casting
-              userData={{ user, setUser }}
-              tokenData={{ token, setToken }}
-              errorData={{ error, setError }}
-            />
-          }
-        />
-        <Route
-          path="cast/:castid"
-          element={
-            <Cast
-              userData={{ user, setUser }}
-              tokenData={{ token, setToken }}
-              errorData={{ error, setError }}
-            />
-          }
-        />
-        <Route
-          path="/discover"
-          element={
-            <Discover
-              userData={{ user, setUser }}
-              tokenData={{ token, setToken }}
-              errorData={{ error, setError }}
-            />
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <Login
-              userData={{ user, setUser }}
-              tokenData={{ token, setToken }}
-              errorData={{ error, setError }}
-            />
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <Register
-              userData={{ user, setUser }}
-              tokenData={{ token, setToken }}
-              errorData={{ error, setError }}
-            />
-          }
-        />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/casting"
+            element={
+              <Casting
+                userData={{ user, setUser }}
+                tokenData={{ token, setToken }}
+                errorData={{ error, setError }}
+              />
+            }
+          />
+          <Route
+            path="cast/:castid"
+            element={
+              <Cast
+                userData={{ user, setUser }}
+                tokenData={{ token, setToken }}
+                errorData={{ error, setError }}
+              />
+            }
+          />
+          <Route
+            path="/discover"
+            element={
+              <Discover
+                userData={{ user, setUser }}
+                tokenData={{ token, setToken }}
+                errorData={{ error, setError }}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <Login
+                userData={{ user, setUser }}
+                tokenData={{ token, setToken }}
+                errorData={{ error, setError }}
+              />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <Register
+                userData={{ user, setUser }}
+                tokenData={{ token, setToken }}
+                errorData={{ error, setError }}
+              />
+            }
+          />
+        </Routes>
+      </main>
+      <Footer />
     </>
   );
 };

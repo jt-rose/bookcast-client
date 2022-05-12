@@ -95,7 +95,6 @@ const Discover = () => {
             );
           })}
       </div>
-      <Footer />
     </>
   );
 };

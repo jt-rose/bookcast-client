@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import axios from "axios";
-import Footer from '../components/Footer'
+import Footer from "../components/Footer";
 import { useNavigate } from "react-router";
 // import "../styles/Datas.css";
 import "../styles/jihee.css";
@@ -44,7 +44,6 @@ const Home = (props) => {
           })}
         </div>
       </div>
-      <Footer />
     </>
   );
 };
